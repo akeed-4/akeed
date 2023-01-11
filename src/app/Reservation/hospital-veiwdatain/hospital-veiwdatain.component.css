@@ -1,0 +1,167 @@
+.rounded-lg {
+  border-radius: 1.3rem!important;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 0.3rem rgba(102, 37, 37, 0.175)!important;
+}
+
+/* .img-thumbnail{
+  height: 100px;
+  width: 150px;
+ padding: 0px;
+ margin-top: 0px;
+
+} */
+
+
+/* h1 {
+  text-align: center;
+  padding-top: 30px;
+  margin: 0;
+  /* color: #fff; */
+/* } */
+
+/* .card {
+  width: 50%;
+  border: 0px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+} */
+.textl{
+  line-height: .5;
+}
+h4 {
+  padding-top: 30px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+/* .card-body {
+  padding: 0;
+} */
+
+.card-title {
+margin-bottom: -1.25rem;
+}
+
+/* .card1 {
+width: 99%;
+margin-right:20px ;} */
+.bg-custom {
+  background: #117a8bd6;
+  box-shadow: 1px 7px 8px 4px rgba(0, 0, 0, .5);
+}
+
+img {
+  height: 100px;
+  margin: 10px;
+}
+
+.rounded {
+  border-radius: 40% !important;
+}
+
+.icons .fa {
+  color: #fff;
+  padding-right: 15px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.mrightname{
+margin-right: -6.75rem!important;
+}
+.mright{
+  margin-right: 19.7rem!important;
+}
+.icons .fa:hover {
+  color: #ddd;
+}
+.btn-block {
+
+  width: 54%;
+}
+.btn{
+  font-size: 1.5rem;
+}
+.mrr{
+margin-left: 1px;
+
+}
+.btn {
+border-radius: 23px !important;
+  margin-top: 10px;
+}
+
+.btn:nth-child(2) {
+  margin-right: 5px;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-custom {
+  background: #4A235A;
+  border-color: #512E5F;
+  color: rgb(22, 21, 21);
+}
+
+.btn-border {
+  border-color: #28B463;
+  color: #28B463;
+}
+
+.btn-custom:hover {
+  color: rgb(24, 21, 21);
+  background: #512E5F;
+}
+
+.btn-border:hover {
+  border-color: #1D8348;
+  color: #28B463;
+}
+
+p {
+  text-transform: capitalize;
+  font-size: 18px;
+  padding-top: 20px;
+}
+
+@media(max-width: 992px) {
+  .card {
+      width: 60%;
+  }
+  h4 {
+      text-align: center;
+      padding-top: 15px;
+  }
+  img {
+      display: block;
+      margin: 10px auto;
+  }
+  .btn {
+      display: block !important;
+  }
+  .icons {
+      padding-top: 20px !important;
+  }
+}
+
+@media(max-width: 768px) {
+  .card {
+      width: 70%;
+  }
+}
+
+@media(max-width: 490px) {
+  p {
+      font-size: 16px;
+      line-height: 1.8;
+  }
+  .card {
+      width: 70%;
+  }
+}

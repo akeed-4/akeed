@@ -1,0 +1,114 @@
+
+<div class="container py-5 ar mt-2 ">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <div class="bg-white rounded-lg shadow-lg p-5">
+        <div class="tab-content">
+          <div  class="tab-pane fade show active">
+            <div class="alert alert1 text-center alert-secondary1 alert-secondary mb-4 ">
+              <strong>{{title}}</strong>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="message">
+              <strong>{{message}}</strong>
+            </div>
+            <hr class="mb-6">
+            <button type="button" class="btn btn-primary mb-4" (click)="GoToList()">العودة لقائمة الاصناف</button>
+            <div class="hospital-container">
+              <div class="hospital">
+                <form [formGroup]="hosptialForm" (ngSubmit)="AddHosptial()" >
+                  <div class="form-group">
+                    <!-- <label for="UserName" style="font-weight: bold;">اسم المستشفى :</label> -->
+                    <input type="text" formControlName="hospitalUserNameAR" class="form-control" id="hospitalUserNameAR" placeholder="اسم الصنف"
+                      [ngClass]="{'is-invalid': this.hosptialForm.get('hospitalUserNameAR').invalid && this.hosptialForm.get('hospitalUserNameAR').touched}">
+
+                <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalUserNameAR').valid && this.hosptialForm.get('hospitalUserNameAR').touched">
+                  {{messageValidate.hospitalUserNameAR.required}}
+                 </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <label for="UserName" style="font-weight: bold;">البريد الالكتروني :</label> -->
+                    <input type="email" formControlName="hospitalEmail" class="form-control" id="hospitalEmail" placeholder="البريد الالكتروني"
+                    [ngClass]="{'is-invalid': this.hosptialForm.get('hospitalEmail').invalid && this.hosptialForm.get('hospitalEmail').touched}">
+
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalEmail').valid && this.hosptialForm.get('hospitalEmail').touched">
+                      {{messageValidate.hospitalEmail.required}}
+                    </div>
+                    
+                  </div>
+                  <div class="form-group">
+                    <!-- <label for="NumberPhone" style="font-weight: bold;">العنوان :</label> -->
+                    <input type="text" formControlName="hospitalLocation" class="form-control" id="hospitalLocation" placeholder=" الفئه"
+                   [ngClass]="{'is-invalid': this.hosptialForm.get('hospitalLocation').invalid && this.hosptialForm.get('hospitalLocation').touched}">
+
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalLocation').valid && this.hosptialForm.get('hospitalLocation').touched">
+                      {{messageValidate.hospitalLocation.required}}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <label for="Address" style="font-weight: bold;">رقم الهاتف :</label> -->
+                    <input type="text" formControlName="hospitalPhone" class="form-control" id="hospitalPhone" placeholder="  السعر"
+                    [ngClass]="{'is-invalid': this.hosptialForm.get('hospitalPhone').invalid && this.hosptialForm.get('hospitalPhone').touched}">
+
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalPhone').valid && this.hosptialForm.get('hospitalPhone').touched">
+                      {{messageValidate.hospitalPhone.required}}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <label for="Address" style="font-weight: bold;">نوع المستشفى :</label> -->
+                    <input type="text" formControlName="hospitalType" class="form-control" id="hospitalType" placeholder=" الكميه "
+                    [ngClass]="{'is-invalid': this.hosptialForm.get('hospitalType').invalid && this.hosptialForm.get('hospitalType').touched}">
+
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalType').valid && this.hosptialForm.get('hospitalType').touched">
+                      {{messageValidate.hospitalType.required}}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <!-- <label for="Address" style="font-weight: bold;">تاريخ الانضمام :</label> -->
+                    <input type="datetime-local" formControlName="datejoining" class="form-control" id="datejoining" placeholder=" تاريخ الانضمام"
+                    [ngClass]="{'is-invalid': this.hosptialForm.get('datejoining').invalid && this.hosptialForm.get('datejoining').touched}">
+
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('datejoining').valid && this.hosptialForm.get('datejoining').touched">
+                      {{messageValidate.datejoining.required}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <img id="image"  class="img-fluid rounded border bg-light" [src]="urlIamge">
+                  </div>
+                  <div class="form-group">
+                    <label for="Image" style="font-weight: bold;">صورة الصنف </label>
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" formControlName="hospitalImage" id="hospitalImage" (change)="HandleFiles($event)" accept="Image/*"
+                          class="custom-file-input">
+                        <label class="custom-file-label upload-lbl" for="hospitalImage">
+                          <span *ngIf="img !== null ">{{img.name}}</span>
+                          <span *ngIf="img === null ">اختر صورة</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="text-danger" *ngIf="!this.hosptialForm.get('hospitalImage').valid && this.hosptialForm.get('hospitalImage').touched && img === null">
+                      {{messageValidate.hospitalImage.required}}
+                    </div>
+                  </div>
+
+
+                  <button type="submit"class=" subscribe btn btn-primary btn-block rounded-pill shadow-sm mt-4"
+                     [disabled]="hosptialForm.invalid || img === null">
+                     {{btnTitle}}
+                  </button>
+
+
+
+                </form>
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

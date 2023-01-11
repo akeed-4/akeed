@@ -1,0 +1,687 @@
+<div class="container  py-5">
+  <form [formGroup]="hospitalGrop" (ngSubmit)="bookingHospital()">
+    <div class="row ">
+      <div class="col-lg-10 mx-auto align-items-center justify-content-center  col-sm-12 ">
+        <div class=" ">
+          <a>
+
+            <div class=" card1 mr-4">
+
+              <div class="card-body">
+                <div class="row bg-white">
+                  <div class="col-md-4 col-sm-4">
+                    <div class="alert alert-info" role="alert" *ngFor="let hospList of listHospitalName">
+                      <!-- <input type="text" id="hospitalNames" formControlName="hospitalNames"> -->
+                      <small style="font-size: 14px;">{{hospList.hospitalUserNameAR}}</small>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-2 mx-auto col-sm-4 ">
+                    <div class="form-group">
+                      <select class="form-control" id="specialtiesId" formControlName="specialtiesId"
+                        (change)="changeDoctorview($event)">
+                        <option value="0"> اختر التخصص</option>
+                        <option *ngFor="let hosSplications of hospitalsSplicationsSplic " [ngValue]="hosSplications.id">
+                          {{hosSplications.splicationName}}</option>
+
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-2 mx-auto  col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" name="doctorId" id="doctorId" formControlName="doctorId"
+                        (change)="changeSlectDoctor($event)">
+                        <option value="0"> اختار الطبيب </option>
+                        <option *ngFor="let doctorViews of doctorView" [ngValue]="doctorViews.id">
+                          {{doctorViews.doctorUserName}}</option>
+
+
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="  py-3 ">
+      <div class="row ">
+        <div class="col-md-9 mx-auto   ">
+          <h6>مواعيد دوام الدكتور في المستشفي </h6>
+
+          <div class="alert alert-success  alert-dismissible fade show" role="alert"
+            *ngIf="this.message!=null&&this.message!=''">
+
+            <strong>{{this.message}}</strong>
+          </div>
+
+
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0" *ngIf="isShowDays">
+
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner  ">
+              <div id="dayN" class="carousel-item   active">
+                <div class="row bg-white  shadow-sm">
+
+                  <div class=" col-md-3 col-sm-2 coday " *ngFor="let datDoctorDays of  datDoctorDay2">
+                    <div class="thumb-wrapper " id="dayDiv">
+                      <div class="thumb-content showInfo1">
+                        <div>
+                          <option [ngValue]="datDoctorDays.id">{{
+                            datDoctorDays.dayName}}</option>
+
+                          <p class="card-text pday "> {{datDoctorDays.dMount| date:' d'}}</p>
+
+                          <div *ngIf="this.hospitalGrop.get('doctorId')?.touched ">
+                            <div *ngFor="let datDoctorDayss of  doctoctWorDayList">
+                              <div *ngIf="datDoctorDayss.daysId==datDoctorDays.daynum">
+
+                                <div *ngIf="datDoctorDayss.stateDay==false">
+                                  <p class="card-text"> متوفر</p>
+                                  <p class="card-text">{{datDoctorDayss.stratTime+"-"+ datDoctorDayss.endTime}}</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(false)"
+                                    (click)="onClickDay(datDoctorDays.id,datDoctorDays.dMount,datDoctorDays.dayName,datDoctorDays.daynum)">
+                                    اختار اليوم</button>
+
+                                </div>
+                                <div *ngIf="datDoctorDayss.stateDay==true">
+                                  <p class="alert-danger card-text"> غير متوفر</p>
+                                  <p class="card-text"> اختار يوم اخر</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(true)"> اختار اليوم</button>
+
+                                </div>
+
+
+                              </div>
+
+                            </div>
+
+
+
+                          </div>
+
+                        </div>
+                        <div>
+
+                        </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item   ">
+                <div class="row bg-white  shadow-sm">
+
+                  <div class="coday col-sm-2 " *ngFor="let datDoctorDays of  datDoctorDay4">
+                    <div class="thumb-wrapper " id="dayDiv">
+
+                      <div class="thumb-content showInfo1">
+
+                        <div>
+                          <option [ngValue]="datDoctorDays.id">{{
+                            datDoctorDays.dayName}}</option>
+
+                          <p class="card-text pday "> {{datDoctorDays.dMount| date:' d'}}</p>
+
+                          <div *ngIf="this.hospitalGrop.get('doctorId')?.touched ">
+                            <div *ngFor="let datDoctorDayss of  doctoctWorDayList">
+                              <div *ngIf="datDoctorDayss.daysId==datDoctorDays.daynum">
+
+                                <div *ngIf="datDoctorDayss.stateDay==false">
+                                  <p class="card-text"> متوفر</p>
+                                  <p class="card-text">{{datDoctorDayss.stratTime+"-"+ datDoctorDayss.endTime}}</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(false)"
+                                    (click)="onClickDay(datDoctorDays.id,datDoctorDays.dMount,datDoctorDays.dayName,datDoctorDays.daynum)">
+                                    اختار اليوم</button>
+
+                                </div>
+                                <div *ngIf="datDoctorDayss.stateDay==true">
+                                  <p class="alert-danger card-text"> غير متوفر</p>
+                                  <p class="card-text"> اختار يوم اخر</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(true)"> اختار اليوم</button>
+
+                                </div>
+
+
+                              </div>
+
+                            </div>
+
+
+
+                          </div>
+
+                        </div>
+                        <div>
+
+                        </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel controls -->
+            <a class="carousel-control-prev btn-Info" href="#myCarousel" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- المواعيد المتاحه -->
+    <!-- <div class="row ">
+    <div class="col-lg-10 mx-auto align-items-center justify-content-center  ">
+      <div class=" ">
+        <a>
+          <div class=" card1">
+            <div class="card-body">
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <h4> المواعيد المتاحه</h4>
+                </div>
+                <div class="col-md-4">
+                  <div class="optionbox ">
+                    <select class="selectRadius">
+                      <option selected>2021</option>
+                      <option value="1">2022</option>
+                      <option value="2">2023</option>
+
+                    </select>
+                  </div>
+
+                </div>
+                <div class="col-md-4">
+                  <div class="optionbox shadow-sm">
+                    <select class="selectRadius">
+                      <option selected> اغسطس</option>
+                      <option>ستمبر </option>
+                      <option>اكتوبر</option>
+                      <option>نوفمبر</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div> -->
+    <!-- الايام -->
+    <div class="  d-none ">
+      <div class="row">
+        <div class="col-md-12 mx-auto  bg-white">
+          <!-- <h2>Trending <b>Products</b></h2> -->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner  ">
+              <div class="carousel-item   active">
+                <div class="row bg-white  shadow-sm">
+                  <!-- <button (click)="enableDisableRule()" [ngClass]="{'green' : toggle, 'red': !toggle}">
+                    {{status}}
+                  </button> -->
+                  <div class="col-md-3 col-4 col-sm-2 " *ngFor="let datDoctorDays of  datDoctorDay">
+                    <div class="thumb-wrapper " id="dayDiv">
+                      <!-- d-sm-none d-md-block -->
+                      <div class="thumb-content showInfo">
+                        <!-- <p id="dayId" formControlName="dayId"> -->
+                        <div>
+                          <option [ngValue]="datDoctorDays.id">{{
+                            datDoctorDays.dayName}}</option>
+                          <!-- <p>{{datDoctorDays.daynum}}</p> -->
+                          <!-- </p> -->
+                          <!-- <p class="card-text pday " > {{ datDoctorDays.dayName}}</p> -->
+                          <p class="card-text pday "> {{datDoctorDays.dMount| date:' d'}}</p>
+
+                          <div *ngIf="this.hospitalGrop.get('doctorId')?.touched ">
+                            <div *ngFor="let datDoctorDayss of  doctoctWorDayList">
+                              <div *ngIf="datDoctorDayss.daysId==datDoctorDays.daynum">
+                                <!-- <p>{{datDoctorDayss.daysId}}</p> -->
+                                <div *ngIf="datDoctorDayss.stateDay==false">
+                                  <p class="card-text"> متوفر</p>
+                                  <p class="card-text">{{datDoctorDayss.stratTime+"-"+ datDoctorDayss.endTime}}</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(false)"
+                                    (click)="onClickDay(datDoctorDays.id,datDoctorDays.dMount,datDoctorDays.dayName,datDoctorDays.daynum)">
+                                    اختار اليوم</button>
+
+                                </div>
+                                <div *ngIf="datDoctorDayss.stateDay==true">
+                                  <p class="alert-danger card-text"> غير متوفر</p>
+                                  <p class="card-text"> اختار يوم اخر</p>
+                                  <button class="btn btn-primary" [disabled]="dayfree(true)"> اختار اليوم</button>
+
+                                </div>
+
+
+                              </div>
+
+                            </div>
+
+
+
+                          </div>
+
+                        </div>
+                        <div>
+
+                        </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="carousel-item  d-md-none d-sm-block ">
+                <div class="row bg-white  shadow-sm">
+                  <div class="col-sm-2 ">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> ggggالجمعه</p>
+                        <p class="card-text pday "> 6</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <a (click)="showHour('8:00 ص')">
+                      <div class="thumb-wrapper">
+
+                        <div class="thumb-content showInfo">
+                          <p class="card-text pday "> السبت</p>
+                          <p class="card-text pday "> 7</p>
+
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a (click)="showHour('10:00 ص')">
+                      <div class="thumb-wrapper">
+
+                        <div class="thumb-content showInfo">
+                          <p class="card-text pday "> الاحد</p>
+                          <p class="card-text pday "> 8</p>
+
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الاثنين</p>
+                        <p class="card-text pday "> 9</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الثلاثاء</p>
+                        <p class="card-text pday "> 10</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الاربعاء</p>
+                        <p class="card-text pday "> 11</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الخميس</p>
+                        <p class="card-text pday "> 12</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item   ">
+                <div class="row bg-white  shadow-sm">
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الجمعه</p>
+                        <p class="card-text pday "> 6</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> السبت</p>
+                        <p class="card-text pday "> 7</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الاحد</p>
+                        <p class="card-text pday "> 8</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الاثنين</p>
+                        <p class="card-text pday "> 9</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الثلاثاء</p>
+                        <p class="card-text pday "> 10</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الاربعاء</p>
+                        <p class="card-text pday "> 11</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="thumb-wrapper">
+
+                      <div class="thumb-content showInfo">
+                        <p class="card-text pday "> الخميس</p>
+                        <p class="card-text pday "> 12</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control-prev btn-Info" href="#myCarousel" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- الساعات -->
+    <div class="   py-4 " *ngIf="isShowHour">
+      <div class="row">
+        <div class="col-md-10 mx-auto ">
+          <div class="bg-white   pb-3 ">
+            <div class="row mr-4">
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1">{{this.pHour}} </p>
+
+              </div>
+
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+              <div class="col-md-3 showInfoTime">
+
+                <p class="card-text pb-2 mt-1"> 8:00 ص</p>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 660447082 -->
+    <!-- الخدمه -->
+    <div class="  ">
+      <div class="row">
+        <div class="col-md-10 mx-auto ">
+          <div class="bg-white  pb-3 ">
+            <div class="row   ">
+              <div class="col-md-8 ">
+                <div class="  optionBoxSelect  ">
+                  <select class="  marginselect selectRadius form-control " id="servicId" formControlName="servicId"
+                    (change)="changeWebsite($event)">
+                    <option [ngValue]="0">اختار الخدمة </option>
+                    <option Value="1">معاينة</option>
+                    <option Value="2">عملية</option>
+                    <!-- <option value="2">2023</option> -->
+                    <!-- <option value="3">China</option> -->
+                  </select>
+
+                </div>
+                <div class="alert alert-success marginAlert alert-dismissible fade show" role="alert"
+                  *ngIf="this.message1!=null&&this.message1!=''">
+
+                  <strong>{{this.message1}}</strong>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- الدفع -->
+    <div class="  ">
+      <div class="row">
+        <div class="col-md-10 mx-auto ">
+          <div class="bg-white   pb-3 ">
+            <div class="row">
+              <div class="col-md-8 ">
+                <div class="  optionBoxSelect  ">
+                  <select class="  marginselect selectRadius form-control " id="payId" formControlName="payId">
+                    <option [ngValue]="0">طريقة الدفع </option>
+                    <option value="1">نقدا</option>
+
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- استخدم بيانتي -->
+    <div class="  mt-4 ">
+      <div class="row">
+        <div class="col-md-10 mx-auto  ">
+          <div class="form-group mr-4">
+            <input type="checkbox" class="pr-5" name="checkedPl" id="checkedPl" formControlName="checkedPl"
+              (change)="onCheckboxChange($event)" checked>
+            <label class="form-check-label" class="pr-2"> استخدم بياناتي </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- معلومات المريض -->
+    <div class="   ">
+      <div class="row">
+        <div class="col-md-10 mx-auto ">
+          <div class="bg-white  shadow-sm pb-3 ">
+            <div class="row  pt-2">
+
+              <div class="col-md-8 ">
+
+
+                <div class=" col-md-10">
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="patientsName" [(ngModel)]="modePlatin.patientUserName"
+                      formControlName="patientsName" id="patientsName" placeholder="اسم المريض ">
+                    <div class="text-danger"
+                      *ngIf="!this.bookingGrop.get('liName')?.valid &&this.bookingGrop.get('liName')?.touched">
+                      {{messgeVali.liName.required}}
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class=" col-md-10">
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" required minlength="6" [(ngModel)]="modePlatin.patientPhone"
+                      formControlName="patientsPhone" id="patientsPhone" placeholder="رقم التلفون"
+                      [ngClass]="{'is-invalid':this.hospitalGrop.get('patientsPhone')?.invalid &&(this.hospitalGrop.get('patientsPhone')?.touched )}">
+                    <!-- <div class="text-danger"
+                      *ngIf="!this.hospitalGrop.get('patientsPhone')?.valid &&(this.hospitalGrop.get('patientsPhone')?.touched ||this.hospitalGrop.get('patientsPhone')?.dirty)">
+                      <div  *ngIf="this.bookingGrop.get('phoneName')?.errors.required">
+                      رقم التلفون مطلوب
+                    </div>
+                    <div *ngIf="this.bookingGrop.get('phoneName')?.errors.minlength">
+                    الحد الادني 7   رقم التلفون مطلوب
+                    </div>
+
+                    </div> -->
+                  </div>
+                </div>
+
+                <div class=" col-md-10">
+                  <div class="row">
+                    <div class="col-md-4">
+
+                      <button type="button" id="bWModel" class="btn btn-primary btn-lg  btnRegister" data-toggle="modal"
+                        data-target="#myModal" (click)=" bookingHospital()">احجز</button>
+
+
+                    </div>
+                    <div class="col-md-8">
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- </form> -->
+              </div>
+
+              <!-- <div class="col-md-4  mr-0">
+                <img src=" assets/imges/booking.jpg" alt="">
+              </div> -->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="myModal" class="modal fade" role="dialog" *ngIf="isModel">
+
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h5 class="modal-title "> سوف يتم الحجز في البيانات التالية</h5>
+          </div>
+          <div class="modal-body">
+
+            <p> الاسم: {{namePaltin}} </p>
+            <p> اسم المستشفي :{{nameHospital}} </p>
+            <p> اسم الطبيب :{{nameDoctor}}</p>
+            <p> اليوم: {{dayName}} </p>
+            <p> التايخ : {{databookingok | date:'MMMM d, y'}} </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveDataBookingFin()">تاكيد
+              الحجز</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">الغاء</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+
+</div>

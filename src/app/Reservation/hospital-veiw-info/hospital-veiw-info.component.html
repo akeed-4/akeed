@@ -1,0 +1,195 @@
+<div class="container my-4">
+
+  <!-- المستشفي  -->
+  <div class="row">
+    <div class=" col-md-7  mx-auto">
+      <div class="card profile-card-2">
+        <div class="card-img-block">
+            <img class="img-fluid" src="assets/imges/Mohommmmed.jpg" alt="Card image cap">
+        </div>
+        <div class="card-body pt-5">
+            <img src="assets/imges/Mohommmmed.jpg" alt="profile-image" class="profile"/>
+            <!-- <h5 class="card-title text-center mt-2 mr-0">مستشفي محمد المصلي</h5> -->
+            <h5 class="card-title text-center mt-2 mr-0"> {{name}} </h5>
+
+            <h6 class="card-title card-text text-secondary ">   نوع المستشفي:  {{ "مستشفي   "+typehospital}}   </h6>
+            <p class="card-text">5 اقسام</p>
+            <p class="card-text"> اوقات الطوارى :</p>
+            <p class="card-text">اوقات العمل : </p>
+          </div>
+    </div>
+    </div>
+  </div>
+  <!-- عن المستشفي  -->
+  <!-- <div class="row mt-4">
+    <div class="col-md-7 mx-auto ">
+
+      <div class="bg-white rounded-lg shadow-sm ">
+        <div class=" mx-auto">
+          <div class="card">
+            <h5 class="card-header widget-title"> عن المستشفي</h5>
+            <div class="card-body ">
+              <p>مستشفي المصلي المتخصص في طب عام و مسايك بوليه </p>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- محتوي المستشفي -->
+  <div class="  py-4 ">
+    <div class="row">
+      <div class="col-md-7 mx-auto ">
+        <div class="bg-white  shadow-sm pb-3 ">
+          <div class="row">
+            <!-- المدونات -->
+            <div class="col-md-3 showInfo">
+              <a (click)="viewBlogs()">
+                <img src="assets/imges/icon.png" class="rounded img-thumbnail">
+                <p class="card-text pb-2 mt-1"> المدونات</p>
+              </a>
+            </div>
+            <!-- الاطباء -->
+            <div class="col-md-3 showInfo">
+              <a (click)="viewAllDoctor()">
+
+                <img src="assets/imges/icon.png" class="rounded img-thumbnail">
+                <p class="card-text pb-2 mt-1"> الاطباء</p>
+              </a>
+            </div>
+            <!-- الاجهزة -->
+            <div class="col-md-3 showInfo">
+              <img src="assets/imges/icon.png" class="rounded img-thumbnail">
+              <p class="card-text pb-2 mt-1"> الاجهزة</p>
+            </div>
+
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-2"></div>
+            <div class="col-md-3 showInfo " >
+              <a data-toggle="modal" data-target="#myModal">
+              <img src="assets/imges/icon.png" class="rounded img-thumbnail">
+              <p class="card-text pb-1 mt-1" > العنوان</p>
+              </a>
+            </div>
+            <div class="col-md-3 showInfo">
+              <a (click)="viewAllDapertment()">
+              <img src="assets/imges/icon.png" class="rounded img-thumbnail">
+              <p class="card-text pb-1 mt-1"> الاقسام</p>
+            </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- الصور -->
+  <div class="row mt-4">
+    <div class="col-md-7 mx-auto ">
+
+      <div class="bg-white rounded-lg shadow-sm ">
+        <div class=" mx-auto">
+          <div class="card">
+            <h5 class="card-header widget-title"> الصور</h5>
+            <div class="card-body image ">
+              <img src="assets/imges/icon.png" class=" img-thumbnail" style="height:200px; width: 250px;">
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row py-4">
+    <div class="col-md-7 mx-auto ">
+      <div class="row">
+        <div class="col-md-5  " (click)="onClickBooking()">
+          <button  type="button"class="  btn btn-success btn-block  "  > احجز</button>
+
+
+        </div>
+
+        <div class="col-md-5 mx-auto ">
+          <button  type="button"class="  btn btn-success btn-block  mr-5 "  > تواصل</button>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+ <!-- The Modal -->
+ <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+
+        <!-- <button type="button" class="close" data-dismiss="modal">×</button> -->
+        <h4 class="modal-title">العنوان</h4>
+
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+       {{title}}
+
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">الغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="modal fade" id="exampleModalShort" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h5 class="modal-title" id="exampleModalShortLabel">Modal title</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            <span aria-hidden="true">&times;</span>
+
+          </button>
+
+        </div>
+
+        <div class="modal-body">
+
+          <p>Modal content</p>
+
+        </div>
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <button type="button" class="btn btn-primary">Save changes</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div> -->

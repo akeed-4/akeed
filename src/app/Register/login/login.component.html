@@ -1,0 +1,87 @@
+<div class="container main mt-4  auto   ">
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message!=''">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+{{message}}
+  </div>
+
+  <div class="col-md-5 bac all">
+    <h2 class="text-center " >تسجيل الدخول</h2>
+    <form [formGroup]="loginform" (ngSubmit)="submit1()" >
+
+      <div class="form-group">
+        <label for="text">اسم المستخدم</label>
+        <input
+          type="text"
+          id="user_name"
+          formControlName="user_name"
+          class="form-control"
+
+          required
+        />
+        <div class="text-danger"  *ngIf="
+        this.loginform.get('user_name')?.invalid &&
+        this.loginform.get('user_name')?.touched
+      "
+    >
+الرجاء ادخال الايميل
+
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="password">كلمه المرور</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+
+          class="form-control"
+
+          minlength="6" required
+        />
+        <div class="text-danger"  *ngIf="
+        this.loginform.get('password')?.invalid &&
+        this.loginform.get('password')?.touched
+      "
+    >
+الرجاء ادخال كلمه المرور
+
+        </div>
+
+
+      </div>
+      <div class="form-group">
+
+        <input
+          type="checkbox"
+          id="rememberMe"
+          formControlName="rememberMe"
+
+        />
+        <label class="pr-2" for="password"> تذكرني</label>
+
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="loginform.invalid">
+          <span class="spinner-border spinner-border-sm mr-1"></span>
+          دخول
+        </button>
+        <a routerLink="../register"  class="btn btn-link">Register</a>
+      </div>
+    </form>
+
+
+<div class="btn-login mt-3">
+ لدي حساب <a href="reg"> التسجيل</a>
+
+</div>
+<div>
+  <a href="forgetpasswords"></a>
+</div>
+</div>
+

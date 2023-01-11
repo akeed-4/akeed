@@ -1,0 +1,80 @@
+<div class=" container py-4">
+  <div class="col-md-6 d-flex mx-auto justify-content-center  ">
+    <div class="searchbar shadow-sm">
+      <input class="search_input" type="text" name="" placeholder="ابحث هنا   ">
+      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+    </div>
+  </div>
+  <!-- كود صور logo -->
+  <div class="row py-1">
+    <div class="col-md-12 mx-auto d-flex align-items-center justify-content-center  ">
+      <div class="  ">
+        <img src="assets/imges/doctoLogin.jpg" class="rounded ">
+
+      </div>
+    </div>
+  </div>
+  <!-- عرض الاطباء -->
+  <div class="row " *ngFor="let doctorsLists of docotorsarr">
+
+    <div  class="col-md-6  mx-auto  py-3 align-items-center justify-content-center  ">
+
+      <div class=" shadow-sm  box">
+        <a (click)="showInfoDocter(doctorsLists.id)">
+          <div class=" card1">
+            <div class="">
+              <div class="row ">
+                <div class="col-md-3 col-sm-3 col-xs-3 ">
+                  <img src="assets/imges/icon.png" class=" img1 rounded img-thumbnail">
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-9 p-0">
+                  <div class=" row mt4">
+                    <div class="col-md-6">
+                  <h4 class="card-title mrightname ">{{doctorsLists.doctorUserName}} </h4>
+
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="  ">
+                        <div class="value mr-4">
+                          <i class="fa fa-star w" style="color: goldenrod;" aria-hidden="false"></i>
+
+                          <i class="fa fa-star w" style="color: goldenrod;" aria-hidden="false"></i>
+                          <i class="fa fa-star w" style="color: goldenrod;" aria-hidden="false"></i>
+                          <i class="fa fa-star w" style="color: goldenrod;" aria-hidden="false"></i>
+                          <i class="fa fa-star w" style="color: goldenrod;" aria-hidden="false"></i>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="row ">
+                <div class="col-md-12 col-sm-12 col-xs-12  ">
+                  <div class="row mr-2 ">
+                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 mt-1 ">
+                      <p class="card-text    " style="font-size: 18px;"> استاذ جامعي تخصص نساء وتوليد </p>
+                      <p class="card-text    " style="font-size: 18px;"> سعر الكشف : </p>
+
+                    </div>
+                    <div class="col-lg-4  col-sm-4 col-xs-4 col-md-4 mt-4 ">
+                      <button type="button" class="btn btn-success btn-block righBtn  hliftbtn" (click)=" hospitalBookingInfo()"> احجز</button>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+</div>

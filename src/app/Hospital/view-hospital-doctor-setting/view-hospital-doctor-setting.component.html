@@ -1,0 +1,114 @@
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-lg-3">
+          <!-- <img ng-src="{{customer.Image ? customer.Image : 'customerimages/default-image.png'}}"
+               class="img-circle"
+               style="max-width:50px"
+               alt='customer image' />
+      </div> -->
+      <div class="col-lg-9">
+          <div style="font-weight:bold;">
+              <a ng-click="customerDetail(customer.CustomerId)" style="cursor:pointer">{{title}}</a>
+              <span class="pull-right" title="Delete customer">
+                  <i ng-click="deleteCustomer($event, customer.CustomerId)" class="glyphicon glyphicon-trash"></i>
+              </span>
+          </div>
+          <div>{{title}} {{title}} {{title}}</div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+  <div class="col-md-8">
+    <div class="form-horizontal">
+      <fieldset>
+          <legend>Customer Detail</legend>
+
+          <div class="col-lg-3">
+              <!-- <img ng-src="{{currentCustomer.Image ? currentCustomer.Image : 'customerimages/default-image.png'}}"
+                   class="img-circle"
+                   alt='customer image' /> -->
+          </div>
+
+          <div class="col-lg-8">
+              <div class="form-group">
+                  <label for="inputEmail" class="col-lg-3 control-label">Full Name</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" ng-model="currentCustomer.FullName" disabled>
+                  </div>
+                  <div class="col-lg-1">
+                      <button ng-click="editCustomer(currentCustomer.CustomerId)" class="btn btn-primary">Edit</button>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail" class="col-lg-3 control-label">Address</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" ng-model="currentCustomer.Address" disabled>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail" class="col-lg-3 control-label">City</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" ng-model="currentCustomer.City" disabled>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail" class="col-lg-3 control-label">Country</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" ng-model="currentCustomer.Country" disabled>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail" class="col-lg-3 control-label">Zip Code</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" ng-model="currentCustomer.ZipCode" disabled>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-lg-8 col-lg-offset-3">
+                      <a ui-sref="customer.detail.contact({contactCustomerId: currentCustomer.CustomerId})">Contact Detail</a>
+                  </div>
+              </div>
+          </div>
+
+      </fieldset>
+    </div>
+
+    <div ui-view></div>
+
+  </div>
+
+</div>
+
+
+
+
+
+<table class="table table-hover table-bordered" datatable>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Username</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+
+        <tr *ngFor="let group of title">
+          <!-- <td>{{group.id}}</td>
+          <td>{{group.email}}</td>
+          <td>{{group.username}}</td> -->
+
+
+        </tr>
+
+
+
+
+  </tbody>
+</table>

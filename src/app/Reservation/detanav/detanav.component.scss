@@ -1,0 +1,22 @@
+.jumbotron{
+ height: auto;
+  color: rgb(165, 27, 153);
+  background: url("../../../assets/imges/in_hospital.jpg") no-repeat center center;
+
+  background-size: cover;
+   position: relative;
+    background-color: #343a40;
+     padding-top: 8rem;
+    padding-bottom: 8rem;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+.jumbotron  h2{
+  font-size: 40px;
+  color: rgb(25, 25, 110);
+
+}
+.bg-whit{
+  background-color:#faf8f8;
+  // opacity: 50%;
+}

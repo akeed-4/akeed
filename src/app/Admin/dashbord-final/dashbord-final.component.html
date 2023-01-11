@@ -1,0 +1,207 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>لوحة التحكم</h3>
+        </div>
+
+
+        <ul class="list-unstyled components">
+
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle">المستخدمين</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a (click)="CheckUser()">قائمة المستخدمين</a>
+                    </li>
+                    <li>
+                        <a (click)="CheckUserRoleList()">صلاحيات المستخدمين</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="#hospitalSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">العمليات
+                </a>
+                <ul class="collapse list-unstyled" id="hospitalSubmenu">
+                    <li>
+                        <a (click)="Checkproduct()"> الاصناف</a>
+                    </li>
+                    <li>
+                        <a (click)="Checkcustomer()">العملاء</a>
+                    </li>
+                    <li>
+                        <a (click)="Checkorder()"> الطلبات</a>
+                    </li>
+                    <li>
+                        <a (click)="checkinvgice()">الفواتير</a>
+                    </li>
+
+                    <li>
+                        <a (click)="checkpeymont()">طرق الدفع</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li>
+                <a (click)="Addinvice()">الفواتير</a>
+            </li> -->
+
+
+
+            <li>
+                <a (click)="CheckPatient()"> التقارير </a>
+            </li>
+        </ul>
+
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid btn-res">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <i class="fa fa-align-right"></i>
+                </button>
+                <div class="pl-2 pr-2 titel" style="display: inline-block;">
+                    لوحة التحكم
+                </div>
+            </div>
+        </nav>
+
+        <div class="container main-panel">
+            <div *ngIf='isUserList'>
+                <app-users></app-users>
+            </div>
+            <div *ngIf='isUserRoleList'>
+
+                <div class="alert alert-primary" role="alert">
+                    <strong> قائمة صلاحيات المستخدمين </strong>
+                </div>
+                <app-user-role></app-user-role>
+            </div>
+
+
+            <div *ngIf='isCustomerList'>
+                <div class="alert alert-primary" role="alert">
+                    <strong>قائمة العملاء</strong>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mb-3" (click)="Addcustomer()">اضافة عميل</button>
+                </div>
+
+            </div>
+
+
+            <div *ngIf='isInvice'>
+                <div class="alert alert-primary" role="alert">
+                    <strong>قائمة الطلبات</strong>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mb-3" (click)="AddOrder()">اضافة طلب</button>
+                </div>
+
+            </div>
+
+            <div *ngIf='isproductslist'>
+                <div class="alert alert-primary" role="alert">
+                    <strong> قائمه الاصناف</strong>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mb-3" (click)="Addproducts()">اضافة صنف</button>
+                </div>
+
+            </div>
+
+
+            <div *ngIf='isinvicese'>
+                <div class="alert alert-primary" role="alert">
+                    <strong>قائمة الفواتير</strong>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mb-3" (click)="Addinvice()">اضافة فاتوره</button>
+                </div>
+
+            </div>
+
+
+            <div *ngIf='ispaymont'>
+                <div class="alert alert-primary" role="alert">
+                    <strong style="margin-bottom:60 ;"> طرق الدفع</strong>
+                  
+                 
+                </div>
+                <div class="center">
+                    <label for="">نقدي</label>
+                    <input type="checkbox" style="margin-left: 70px;" class="btn btn-success mb-3" (click)="checkpeymont1()"> 
+                    <label for="">شبكه</label>
+                    <input type="checkbox" class="btn btn-success mb-3" (click)="checkpeymont1()"> 
+                   
+                </div>
+            </div>
+
+            
+            <div *ngIf='isinvicese'>
+                <app-invice></app-invice>
+            </div> 
+            
+            <div *ngIf='ispaymontinvice'>
+                <app-invice></app-invice>
+            </div> 
+            
+
+
+            
+                
+            <div *ngIf='isAdddepartment'>
+                <app-add-invice></app-add-invice>
+            </div> 
+            <div *ngIf='isAddUser'>
+                <app-add-user></app-add-user>
+            </div>
+             
+            <div *ngIf='isaaddOreder'>
+                <app-addrequst></app-addrequst>
+            </div>
+            <div *ngIf='isproductslist'>
+                <app-view-products></app-view-products>
+            </div>
+            <div *ngIf='isAddhospital'>
+                <app-add-products></app-add-products>
+            </div>
+
+            <div *ngIf='isInvice'>
+                <app-requst></app-requst>
+            </div>
+            <div *ngIf='isCustomerList'>
+                <app-view-customers></app-view-customers>
+            </div>
+            <div *ngIf='isAddcustomer'>
+                <app-add-customers></app-add-customers>
+            </div>
+            <div *ngIf='isDepartmentList'>
+                <div class="alert alert-primary" role="alert">
+                    <strong>قائمة الاقسام</strong>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mb-3" (click)="Addinvice()">اضافة قسم</button>
+                </div>
+
+            </div>
+
+
+
+
+           
+            <div *ngIf='isPatientList'>
+                <app-patientss></app-patientss>
+            </div>
+            <div *ngIf='isAddPatient'>
+                <app-patient></app-patient>
+            </div>
+        </div>
+    </div>
+</div>

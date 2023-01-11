@@ -1,0 +1,166 @@
+<div class="container main mt-4 ">
+  <h2>{{titel}}</h2>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message1!='' && message1 !=null">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    {{message1}}
+  </div>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMes!=''  &&errorMes!=null ">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    {{errorMes}}
+  </div>
+  <div>
+    <div class="col-md-5 bac">
+      <h2>التسجيل</h2>
+      <form [formGroup]="registaration" (ngSubmit)="Addusers()">
+
+        <div class="form-group">
+          <label for="username">اسم المستخدم</label>
+          <input type="text" id="userName" formControlName="userName" placeholder="اسم المستخدم" class="form-control"
+            required [ngClass]="{
+            'is-invalid':
+              this.registaration.get('userName')?.invalid &&
+              this.registaration.get('userName')?.touched
+          }" />
+
+          <div class="text-danger" *ngIf="
+            this.registaration.get('userName')?.invalid &&
+            this.registaration.get('userName')?.touched
+          ">
+            اسم المستحدم مطلوب
+          </div>
+          <div class="text-danger" *ngIf=" this.registaration.get('userName')?.value!==null  && this.registaration.get('userName')?.value!==''
+        &&isNameExist()">{{this.messageshow.userName.mathName}}
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">الايميل</label>
+          <input type="email" id="email" formControlName="email" required class="form-control" [ngClass]="{
+            'is-invalid':
+              this.registaration.get('email')?.invalid &&
+              this.registaration.get('email')?.touched
+          }
+          " />
+          <div class="text-danger" *ngIf="
+            this.registaration.get('email')?.invalid &&
+            this.registaration.get('email')?.touched
+          " مطلوب المستحدم ايميل>
+            <div class="text-danger" *ngIf="
+              this.registaration.get('email')?.errors?.required ">
+              مطلوب المستحدم ايميل
+            </div>
+            <div class="text-danger" *ngIf="this.registaration.get('email')?.errors?.email">
+              ادخل الايميل بشكل صحيح
+            </div>
+          </div>
+          <div class="text-danger"
+            *ngIf=" this.registaration.get('email')?.value!==null  && this.registaration.get('email')?.value!==''&&isEmailExist()">
+            {{messageshow.email.mathEmail1}}
+
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">كلمه المرور</label>
+          <input type="password" id="password" formControlName="password" [ngClass]="{
+            'is-invalid':
+              this.registaration.get('password')!.valid &&
+              this.registaration.get('password')?.touched
+          }" class="form-control" required minlength="6" />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('password')?.invalid &&
+          this.registaration.get('password')?.touched
+        ">
+            <div *ngIf="this.registaration.get('password')?.errors?.required">
+              كلمه المرور مطلوبه
+            </div>
+            <div *ngIf="this.registaration.get('password')?.errors?.minlength">
+              الحد الاقصى لكلمه المرور 6 مقاطع
+            </div>
+
+          </div>
+          <div class="text-danger" *ngIf="!ispasswordvalid1()">
+            {{messageshow.password.notMatch}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">تاكيد كلمه المرور </label>
+          <input type="password" id="passwordconfirm" formControlName="passwordconfirm" [ngClass]="{
+            'is-invalid':
+              this.registaration.get('passwordconfirm')!.valid &&
+              this.registaration.get('passwordconfirm')?.touched
+          }" class="form-control" required minlength="6" />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('passwordconfirm')?.invalid &&
+          this.registaration.get('passwordconfirm')?.touched
+        ">
+            <div *ngIf="this.registaration.get('passwordconfirm')?.errors?.required">
+              كل مه المرور مطلوبه
+            </div>
+            <div *ngIf="this.registaration.get('passwordconfirm')?.errors?.minlength">
+              الحد الاقصى لكلمه المرور 6 مقاطع
+            </div>
+
+          </div>
+          <div class="text-danger" *ngIf="ispasswordvalid()">
+            {{messageshow.password.notMatch}}
+          </div>
+
+
+        </div>
+
+        <div class="form-group">
+          <label for="password"> رقم الهاتف </label>
+          <input type="text" id="phoneNumber" formControlName="phoneNumber" [ngClass]="{
+                'is-invalid':
+                  this.registaration.get('phoneNumber')!.valid &&
+                  this.registaration.get('phoneNumber')?.touched
+              }" class="form-control" required minlength="6" />
+          <div class="text-danger" *ngIf="
+                this.registaration.get('phoneNumber')?.invalid &&
+                (this.registaration.get('phoneNumber')?.touched || this.registaration.get('phoneNumber')?.dirty)
+              ">
+            <div *ngIf="this.registaration.get('phoneNumber')?.errors?.required">
+              يرجى تاكيد الايميل
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input ml-3" name="" id="emailconfirm"
+              formControlName="emailconfirm" value="checkedValue">
+            <label class="mr-3">
+              تفعيل البريد لالكتروني
+            </label>
+          </label>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary"
+            [disabled]="registaration.invalid||  !ispasswordvalid1()  ||isNameExist()||isEmailExist()">
+            <span class="spinner-border spinner-border-sm mr-1"></span>
+            {{btnTitle}}
+          </button>
+          <a routerLink="../register" class="btn btn-link">Register</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="btn-login mt-3">
+      لدي جساب <a href="login"> {{btnTitle}}</a>
+
+    </div>
+    <div>
+      <a href="passwordconfirm">sure</a>
+    </div>
+  </div>
+</div>
+

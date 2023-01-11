@@ -1,0 +1,12 @@
+.shadow-lg {
+  box-shadow: 0 1rem 2.3rem rgba(1,0,0,1.175)!important;
+}
+.rounded-lg {
+  border-radius: 3.3rem!important;
+}
+
+
+fieldset {
+  background-color: #176ab80f;
+
+}

@@ -1,0 +1,312 @@
+
+<div class="container card shadow d-flex justify-content-center mt-5">
+  <!-- nav options -->
+  <ul class="nav nav-pills mb-3 shadow-sm" id="pills-tab" role="tablist">
+      <li class="nav-item"> <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">موافق عليه</a> </li>
+      <li class="nav-item"> <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">قيد الانتظار </a> </li>
+      <li class="nav-item"> <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">تم</a> </li>
+      <li class="nav-item"> <a class="nav-link" id="pills-contact2-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">الغيت</a> </li>
+
+    </ul> <!-- content -->
+  <div class="tab-content" id="pills-tabContent p-3">
+      <!-- 1st card -->
+      <!-- الموافقه عليه -->
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="row " *ngFor="let PatLists of bookingGetDataOk">
+
+          <div class="col-lg-10 mx-auto  py-2   ">
+
+            <div class=" shadow-sm  box">
+              <a>
+                <div class=" card1">
+                  <div class="">
+                    <div class="row pb-2 text-center">
+
+                      <div class="col-lg-9 p-0">
+                        <h4 class="card-title mt-3"> مستشفي {{PatLists.hospitalUserNameAR}} </h4>
+
+                      </div>
+
+                    </div>
+                    <!-- الطبيب و التخصص -->
+                    <div class="row  py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-5 mt-1 ">
+                            <p class="card-text    " style="font-size: 18px;"> اسم الطبيب
+                              :{{PatLists.doctorUserName}} </p>
+                            <!-- <p class="card-text    " style="font-size: 18px;"> سعر الكشف : </p> -->
+
+                          </div>
+                          <div class="col-lg-5  ">
+                            <!-- <button type="button" class="btn btn-success btn-block hliftbtn" > احجز</button> -->
+                            <p class="card-text    " style="font-size: 18px;"> التخصص :
+                              {{PatLists.splicationName}} </p>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-5 mt-1 ">
+                            <p class="card-text    " style="font-size: 18px;"> يوم الحجز :{{PatLists.dayName}}
+                            </p>
+
+
+                          </div>
+                          <div class="col-lg-5  ">
+
+                            <p class="card-text    " style="font-size: 18px;"> التاريخ : {{PatLists.bookingDate |
+                              date:'MMMM d, y'}}</p>
+
+
+                          </div>
+                          <!-- <div class="col-lg-4  ">
+
+
+
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-7 mt-1 ">
+                            <!-- <p class="card-text    " style="font-size: 18px;"> حالة الحجز :{{PatLists.doctorUserName}} </p> -->
+                            <div *ngIf="PatLists.bookingStatus==0">
+                              <p> حالة الحجز :قيد الانتظار </p>
+                            </div>
+                            <div *ngIf="PatLists.bookingStatus==1">
+                              <p> حالة الحجز :موافق عليه </p>
+                            </div>
+                            <div *ngIf="PatLists.bookingStatus==2">
+                              <p> حالة الحجز :ملغي </p>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-4  ">
+                            <button type="button" class="btn btn-success btn-block hliftbtn"> الغاء الحجز</button>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd card -->
+
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+        <div class="alert  mx-auto alert-dismissible fade show col-md-6 mess" role="alert"
+        *ngIf="this.message!=null&&this.message!=''">
+        <img src="assets/icon/notFond.png" alt="">
+
+        <strong class="py-2">{{this.message}}</strong>
+      </div>
+      <div class="row " *ngFor="let PatLists of bookingGetDataOk">
+
+        <div class="col-lg-10 mx-auto  py-2   " *ngIf="PatLists.id>=1">
+
+          <div class=" shadow-sm  box">
+            <a>
+              <div class=" card1">
+                <div class="">
+                  <div class="row pb-2 text-center">
+
+                    <div class="col-lg-9 p-0">
+                      <h4 class="card-title mt-3"> مستشفي {{PatLists.hospitalUserNameAR}} </h4>
+
+                    </div>
+
+                  </div>
+                  <!-- الطبيب و التخصص -->
+                  <div class="row  py-1">
+                    <div class="col-lg-12 ">
+                      <div class="row mr-2 ">
+                        <div class="col-lg-5 mt-1 ">
+                          <p class="card-text    " style="font-size: 18px;"> اسم الطبيب
+                            :{{PatLists.doctorUserName}} </p>
+                          <!-- <p class="card-text    " style="font-size: 18px;"> سعر الكشف : </p> -->
+
+                        </div>
+                        <div class="col-lg-5  ">
+                          <!-- <button type="button" class="btn btn-success btn-block hliftbtn" > احجز</button> -->
+                          <p class="card-text    " style="font-size: 18px;"> التخصص :
+                            {{PatLists.splicationName}} </p>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row py-1">
+                    <div class="col-lg-12 ">
+                      <div class="row mr-2 ">
+                        <div class="col-lg-5 mt-1 ">
+                          <p class="card-text    " style="font-size: 18px;"> يوم الحجز :{{PatLists.dayName}}
+                          </p>
+
+
+                        </div>
+                        <div class="col-lg-5  ">
+
+                          <p class="card-text    " style="font-size: 18px;"> التاريخ : {{PatLists.bookingDate |
+                            date:'MMMM d, y'}}</p>
+
+
+                        </div>
+                        <!-- <div class="col-lg-4  ">
+
+
+
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row py-1">
+                    <div class="col-lg-12 ">
+                      <div class="row mr-2 ">
+                        <div class="col-lg-7 mt-1 ">
+                          <!-- <p class="card-text    " style="font-size: 18px;"> حالة الحجز :{{PatLists.doctorUserName}} </p> -->
+                          <div *ngIf="PatLists.bookingStatus==0">
+                            <p> حالة الحجز :قيد الانتظار </p>
+                          </div>
+                          <div *ngIf="PatLists.bookingStatus==1">
+                            <p> حالة الحجز :موكد </p>
+                          </div>
+                          <div *ngIf="PatLists.bookingStatus==2">
+                            <p> حالة الحجز :ملغي </p>
+                          </div>
+
+                        </div>
+                        <div class="col-lg-4  ">
+                          <button type="button" class="btn btn-success btn-block hliftbtn"> الغاء الحجز</button>
+
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+       <!-- 3nd card -->
+      <div class="tab-pane fade third" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+         <!--  الحجوزات الملغي -->
+         <div class="row " *ngFor="let PatLists of bookingGetDataCancal">
+
+          <div class="col-lg-10 mx-auto  py-2   ">
+
+            <div class=" shadow-sm  box">
+              <a>
+                <div class=" card1">
+                  <div class="">
+                    <div class="row pb-2 text-center">
+
+                      <div class="col-lg-9 p-0">
+                        <h4 class="card-title mt-3"> مستشفي {{PatLists.hospitalUserNameAR}} </h4>
+
+                      </div>
+
+                    </div>
+                    <!-- الطبيب و التخصص -->
+                    <div class="row  py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-5 mt-1 ">
+                            <p class="card-text    " style="font-size: 18px;"> اسم الطبيب
+                              :{{PatLists.doctorUserName}} </p>
+                            <!-- <p class="card-text    " style="font-size: 18px;"> سعر الكشف : </p> -->
+
+                          </div>
+                          <div class="col-lg-5  ">
+                            <!-- <button type="button" class="btn btn-success btn-block hliftbtn" > احجز</button> -->
+                            <p class="card-text    " style="font-size: 18px;"> التخصص :
+                              {{PatLists.splicationName}} </p>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-5 mt-1 ">
+                            <p class="card-text    " style="font-size: 18px;"> يوم الحجز :{{PatLists.dayName}}
+                            </p>
+
+
+                          </div>
+                          <div class="col-lg-5  ">
+
+                            <p class="card-text    " style="font-size: 18px;"> التاريخ : {{PatLists.bookingDate |
+                              date:'MMMM d, y'}}</p>
+
+
+                          </div>
+                          <!-- <div class="col-lg-4  ">
+
+
+
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row py-1">
+                      <div class="col-lg-12 ">
+                        <div class="row mr-2 ">
+                          <div class="col-lg-7 mt-1 ">
+                            <!-- <p class="card-text    " style="font-size: 18px;"> حالة الحجز :{{PatLists.doctorUserName}} </p> -->
+                            <div *ngIf="PatLists.bookingStatus==0">
+                              <p> حالة الحجز :قيد الانتظار </p>
+                            </div>
+                            <div *ngIf="PatLists.bookingStatus==1">
+                              <p> حالة الحجز :موكد </p>
+                            </div>
+                            <div *ngIf="PatLists.bookingStatus==2">
+                              <p> حالة الحجز :ملغي </p>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-4  ">
+                            <button type="button" class="btn btn-success btn-block hliftbtn" [disabled]="true"> تم
+                              الغاء الحجز</button>
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<!--  -->

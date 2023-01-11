@@ -1,0 +1,84 @@
+<div class="container py-4">
+  <div class="row  ">
+    <div class="col-lg-12 mx-auto d-flex align-items-center justify-content-center  ">
+      <div class="  col-md-12 ">
+        <div class="alert  alert-info text-center  marginrightalert" role="alert">
+          <strong>حجوزاتي     </strong>
+        </div>
+        <!-- <img src="assets/imges/doctoLogin.jpg" class="rounded imgeT"> -->
+        <div class="text-cent-center text-center mr-5">
+          <strong> اسم  المستشفي </strong>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div>
+      <table id="tb1" class="table table-response bg-light border" style="height: 100px;">
+          <thead>
+              <tr class="bg-dark text-light">
+                <th> الرقم</th>
+                  <th>اسم المريض  </th>
+                  <th> تلفون المريض </th>
+                  <th>اسم الطبيب  </th>
+                  <th> التخصص</th>
+
+                  <th>  اليوم </th>
+                  <th> تاريخ الحجز   </th>
+                  <th>حالة الحجز</th>
+                  <th>تعديل</th>
+                  <th>
+                      <input type="checkbox" class="ckheader">
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let bookingGetDatas of bookingGetData">
+                <td>{{bookingGetDatas.id}}</td>
+                  <td >{{bookingGetDatas.patientUserName}}</td>
+                  <td>{{bookingGetDatas.patientPhone}}</td>
+                  <td>{{bookingGetDatas.doctorUserName}}</td>
+                  <td>{{bookingGetDatas.splicationName}}</td>
+                  <td>{{bookingGetDatas.dayName}}</td>
+                  <td>{{bookingGetDatas.bookingDate| date:'MMMM d, y'}}</td>
+                  <div>
+                    <div *ngIf="bookingGetDatas.bookingStatus==0"><td>قيد الانتظار</td></div>
+                    <div *ngIf="bookingGetDatas.bookingStatus==1"><td>موكد </td></div>
+                    <div *ngIf="bookingGetDatas.bookingStatus==2"><td>ملغي  </td></div>
+                    <!-- <td>{{bookingGetDatas.bookingStatus}}</td> -->
+                  </div>
+
+
+                  <td>
+                      <div *ngIf="bookingGetDatas.bookingStatus==0">
+                          <button type="button"  class="btn btn-primary btn-sm "(click)="update(bookingGetDatas.id)">تاكيد الحجز</button>
+
+                      </div>
+                      <div *ngIf="bookingGetDatas.bookingStatus==1">
+                        <button type="button"  class="btn btn-primary btn-sm "(click)="cancalBooking(bookingGetDatas.id)">الغاء الحجز</button>
+
+                    </div>
+                    <div *ngIf="bookingGetDatas.bookingStatus==2">
+                      <!-- <button type="button"  class="btn btn-primary btn-sm "(click)="cancalBooking(bookingGetDatas.id)">الغاء الحجز</button> -->
+                      <p class=" col-md-6"> تم إلغاء الحجز      </p>
+                  </div>
+
+                  </td>
+                  <td>
+                      <input type="checkbox" class="ckitem" value="">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <!-- <div>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId" >
+              حذف
+          </button>
+      </div> -->
+  </div>
+
+  <!-- <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
+  <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a> -->
+  <!-- this.router.navigateByUrl('post/index'); -->
+</div>

@@ -1,0 +1,113 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+
+      </div>
+
+      <ul class="list-unstyled components">
+
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle mb-3">المستخدمين</a>
+              <ul class="dropdown-toggle" id="homeSubmenu">
+                  <li>
+                      <a  (click)="checkUsers()"> قائمه المستخدمين</a>
+                  </li>
+                  <li>
+                      <a (click)="checkUsersRoleList()"> صلاحيات المستخدمين</a>
+                  </li>
+
+              </ul>
+          </li>
+
+
+
+          
+          <li>
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">الاقسام والتخصصات</a>
+                  <ul class="collapse list-unstyled" id="pageSubmenu">
+                          <li>
+                                  <a (click)="checkhospitalList()" >قائمه المستشفيات</a>
+                              </li>
+                              <li>
+                                  <a (click)="checkDoctorsList()" >قائمه العملاء</a>
+                              </li>
+
+                              <li routerLink="Customers"  >
+                                <a  >قائمه العملاء</a>
+                            </li>
+                  </ul>
+              </li>
+
+      </ul>
+
+
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid btn-res">
+
+              <button type="button" id="sidebarCollapse" class="btn btn-light">
+                  <i class="navbar-toggler-icon"></i>
+
+              </button>
+
+              <div class="bl-2 br-2  title" style="display: inline-block">
+                  لوحه التحكم
+                </div>
+
+          </div>
+
+      </nav>
+
+
+      <div class="container main-panal">
+<div *ngIf="isUser">
+      <div class="alert alert-success" role="alert">
+              <strong>قائمه المستخدمين</strong>
+      </div>
+          <div>
+              <button type="button" class="btn btn-success" (click)="Adduser()">اضافه قائمه</button>
+
+<app-users></app-users>
+</div>
+</div>
+<div *ngIf="isAddUserRoleList">
+  <div class="alert alert-success" role="alert">
+          <strong>صلاحيات المستخدمين</strong>
+  </div>
+
+
+<app-user-role></app-user-role>
+
+</div>
+
+<div *ngIf="ishospitalList">
+  <div class="alert alert-success" role="alert">
+          <strong> قائمه المستشفيات</strong>
+  </div>
+
+
+<app-show-hospital></app-show-hospital>
+
+</div>
+<div *ngIf="isDoctorsList">
+  <div class="alert alert-success" role="alert">
+          <strong> قائمه الاطباء</strong>
+  </div>
+
+
+<app-show-data></app-show-data>
+
+</div>
+<div  *ngIf="isAddUser">
+  <app-add-users></app-add-users>
+</div>
+      </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,164 @@
+*{
+    box-sizing: border-box;
+padding: 0;
+
+}
+
+.home{
+    background: url(/assets/images/br.jpg) no-repeat;
+
+    background-size: 100% 80%;
+    width: 100%;
+    margin: 20px auto;
+    height: 600px;
+
+}
+a{
+    cursor:default;
+    text-decoration: none;
+}body{
+
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background-size: cover;
+
+}
+head{
+    background: red;
+}
+
+.style {
+    background: yellow;}
+.container{
+
+ display: flex;
+    flex-flow: row;
+flex-wrap: wrap;
+justify-content: center;
+}
+.container .pricing-table{
+ height: 400px;
+    padding: 10px;
+    background: #ccc;
+    overflow: hidden;
+    width: 300px;
+   margin: 10px;
+   margin-top: 50px;
+border-radius: 10px;
+box-shadow: 0px 8px 15px rgba(0,0,0,100);
+transform: scale(1);
+transition: all 600ms cubic-bezier(0.68,-0.55,0.26,1.55);
+}
+.container .pricing-table:nth-child(1){
+    background-image:linear-gradient(1895deg, rgb(225, 236, 234) 10%,#00ccff 10%);
+}
+.container .pricing-table:nth-child(2){
+    background-image: linear-gradient(1895deg, rgb(241, 234, 234) 10%,#00ccff 10%);
+}
+.container .pricing-table:nth-child(3){
+    background-image: linear-gradient(1895deg, rgb(225, 236, 234)10%,#00ccff 10%);
+}
+.container .pricing-table:hover{
+    transform: scale(1.1);
+    z-index: 1;
+}
+.pricing-table .icon{
+    display: block;
+    width: 70px;
+    height: 70 px;
+    background: white;
+    text-align: center;
+    line-height: 70px;
+    font-size: 2.2em;
+    margin: 10px auto;
+    border-radius: 50px;
+    box-shadow: 0px 5px 5 px rgba(0,0,0,0.2);
+}
+.pricing-table .icon:hover{
+    transform: scale(1);
+    color: rgb(245, 86, 184);
+background: rgb(29, 217, 250);}
+.pricing-table .icon span{
+    transform: scale(1);
+ transition: all 600ms cubic-bezier(0.68,-055,0.265,1.55);}
+ .pricing-table .type-01{
+    color: #ff3bf5;
+}
+.pricing-table .type-02{
+    color: #ff3bf5;
+
+    }
+    .pricing-table .type-03{
+        color: #ff3bf5;
+    }
+
+        .heading{
+            color: white;
+            text-align: center;
+            text-transform: capitalize;
+            font-weight: 10px;
+            margin-top: 20px;
+            font-size: 1.2em;
+
+        }
+    .service-price{
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: -25px;
+      }
+    .service-price .dollar-sign{
+
+        font-size: 0.5em;
+        margin-left: -100px;
+     }
+
+     .features-list{
+         list-style: none;
+         display: block;
+         margin:34px;
+         width: 80%;
+     }.features-list li {
+         color: #1b00ff;
+         text-align: right;
+         word-wrap:normal;
+        text-transform: capitalize;
+        font-weight:bold;
+        font-size: 0.9em;
+        height: 30px;
+        line-height: 1px;
+        margin-bottom: 6px;
+
+    }
+    .order-button{
+        border: none;
+        display: block;
+        width: 70%;
+        height: 40px;
+        margin: 5px auto ;
+        border-radius: 50px;
+        box-shadow: 0px 8px 15px rgba(0,0,0,0.2);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-transform: capitalize;
+        color:rgba(0,0,0,0.5);
+        background: white;
+        cursor: pointer;
+
+
+    }
+    .order-button:hover{
+         color: violet;
+         background-color: #ccc;
+   }
+   .order-button:active{
+    color: red;
+   }
+   .cont h1{
+       margin-top: -110px;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: calc(100% - 10px);
+}
+.cont p{
+  margin-top: 20px;
+
+
+}

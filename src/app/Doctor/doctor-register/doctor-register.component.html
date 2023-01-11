@@ -1,0 +1,202 @@
+<div class="container py-5 ar mt-2 ">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="bg-white rounded-lg shadow-lg p-5">
+
+        <div class="alert alert1 text-center alert-secondary1 alert-secondary mb-4 ">
+          <strong>تسجيل الاطباء في موقع طببي نت</strong>
+        </div>
+        <!-- <h1  class="text-center badge badge-dark  mb-4">تسجيل حساب مستخدم</h1> -->
+
+        <form [formGroup]="fGrop" (ngSubmit)="rgis()">
+          <!--input User Name-->
+          <!-- المعلومات الحساب -->
+          <fieldset class="form-group border p-2 mt-4">
+            <legend class="fs-title"> معلومات الحساب </legend>
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="UserName">اسم المستخدم</label>
+                  <input type="text " class="form-control" name="userName" placeholder="اسم المستخدم بالانجليزي">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="UserName">البريد الالكتروني</label>
+                  <input type="text " class="form-control" name="email" placeholder="البريد الالكتروني">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <!-- المعلومات الاساسية -->
+          <fieldset class="form-group border p-2 mt-4">
+            <legend class="w-auto px-2"> المعلومات الاساسية </legend>
+            <div class="form-group">
+              <label for="UserName">اسم الكامل</label>
+              <input type="text " class="form-control" name="userName" placeholder="اسم الكامل ">
+            </div>
+            <div class="row">
+
+              <div class="col-md-6">
+
+                <div class="form-group">
+
+                  <label for="UserName"> تاريخ الميلاد</label>
+                  <input type="date" class="form-control" id="dateDay" name="dateDay" formControlName="dateDay" >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="UserName"> الجنس </label>
+                <div class="form-group">
+
+
+                  <div class="form-check  form-check-inline">
+                    <input type="radio" class="pr-5" class="form-check-input" name="remmber" checked>
+                    <label class="form-check-label" class="pr-2 pl-2"> ذكر </label>
+                  </div>
+                  <div class="form-check  form-check-inline">
+                    <input type="radio" class="pr-5" class="form-check-input" name="remmber">
+                    <label class="form-check-label" class="pr-2"> انثي </label>
+                  </div>
+                  <!-- <label for="UserName"> الجنس </label> -->
+
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="Na"> الجنسية </label>
+                  <!-- <input type="text " class="form-control" name="phone"  placeholder=" اختر التخصص "> -->
+                  <select class="form-control" id="" name="">
+                    <option selected>اليمن</option>
+
+
+                  </select>
+                </div>
+
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+          <!-- معلومات التواصل  -->
+          <fieldset class=" form-group border p-2 mt-4">
+            <legend w-auto px-2> معلومات التواصل </legend>
+            <div class="row">
+              <div class=" col-md-6 ">
+                <div class="form-group">
+                  <label for="UserName">رقم الموبيل </label>
+                  <input type="text " class="form-control" name="phone" placeholder=" رقم الموبيل ">
+                </div>
+
+
+              </div>
+              <div class=" col-md-6 ">
+                <div class="form-group">
+                  <label for="UserName">العنوان </label>
+                  <input type="text " class="form-control" name="phone" placeholder="   ">
+                </div>
+
+              </div>
+            </div>
+
+          </fieldset>
+
+          <!-- معلومات التخصص -->
+          <fieldset class="form-group border p-2 mt-4">
+            <legend class=" "> حول التخصص </legend>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="UserName"> اختر التخصص </label>
+                  <!-- <input type="text " class="form-control" name="phone"  placeholder=" اختر التخصص "> -->
+                  <select class="form-control" id="" name="">
+                    <option selected>عيون</option>
+                    <option selected>باطنية</option>
+                    <option selected>جلد</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="UserName">المؤهل العلمي </label>
+                  <select class="form-control" name="" id="">
+                    <option value="">بكاريوس</option>
+                    <option value=""> دكتوره</option>
+
+                  </select>
+
+                  <!-- <input type="text " class="form-control" name="phone"  placeholder=" المؤهل العلمي  "> -->
+                </div>
+              </div>
+
+            </div>
+
+          </fieldset>
+
+          <!-- معلومات التعليم -->
+          <fieldset class="form-group border p-2 mt-4">
+            <legend class=" w-auto px-2"></legend>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="UserName">جامعة التخرج </label>
+                  <input type="text " class="form-control" name="phone" placeholder="     ">
+                </div>
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="UserName">دولة التخرج </label>
+                  <input type="text " class="form-control" name="phone" placeholder="     ">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="UserName"> عام التخروج </label>
+                  <input type="date" class="form-control" name="">
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <div class="form-group">
+            <label for="UserName">كلمة المرور </label>
+            <input type="text " class="form-control" name="phone" placeholder="  كلمة المرور  ">
+          </div>
+
+          <div class="form-group">
+            <label for="UserName"> تاكيد كلمة المرور </label>
+            <input type="text " class="form-control" name="phone" placeholder="تاكيد كلمة المرور">
+          </div>
+          <button type="submit" class=" subscribe btn btn-primary btn-block rounded-pill shadow-sm mt-2"> تسجيل</button>
+
+
+
+        </form>
+        <div class="mt-3 mb-4 subscribe ">!!لدي حساب<a href="Login" class="pr-4 ">دخول</a></div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- <div class="row" *ngFor="let datDoctorDayS of datDoctorDay">
+    <div class="row">
+      <div class="col-md-1"> <p>{{datDoctorDayS.id}}</p></div>
+      <div class="col-md-6"> <p>{{datDoctorDayS.dayName}}</p></div>
+      <div class="col-md-4">
+        <p (click)="outDate(datDoctorDayS.dMount)">{{datDoctorDayS.dMount| date:'  d'}}</p>
+      </div>
+
+    </div>
+
+
+
+  </div> -->
+
+</div>

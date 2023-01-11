@@ -1,0 +1,63 @@
+<div class="hosptialss">
+  <div>
+      <div class="alert alert-primary mb-3" role="alert">
+          <strong>قائمة الاصناف </strong>
+      </div>
+      <button type="button" class="btn btn-outline-success mb-3" (click)="AddHospital()">اضافة صنف</button>
+      <table id="tbl" class="table table-response table-light rounded mb-3 border">
+          <thead>
+              <tr class="bg-dark text-warning">
+                <th>اسم الصنف</th>
+                <th>السعر</th>
+              
+                <th> الفئه</th>
+                  <th>تعديل</th>
+                  <th>حذف</th>
+                  <th>
+                      <input type="checkbox" class="ckheader" (change)="SelectAll()">
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of hospitals">
+                  <td scope="row">{{item.hospitalUserNameAR}} </td>
+                  <td>{{item.hospitalLocation}}</td>
+                  <td>{{item.hospitalEmail}}</td>
+                  <td>{{item.hospitalType}}</td>
+                  <td>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="EditHospital(item.hospitalId)">تعديل</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm"  (click)="DeleteConfirms(item.hospitalId)">حذف</button>
+                 </td>
+                  <td>
+                      <input type="checkbox" class="ckitem" value="{{item.hospitalId}}">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <div>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId"
+              (click)="DeleteCount()" [disabled]="!IsDelete()">حذف
+          </button>
+      </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">تنبيه حذف</h5>
+        </div>
+        <div class="modal-body">
+          هل تريد حذف {{num}}  فعلا؟؟
+        </div>
+        <div class="modal-footer">
+            <button id="btnClose" type="button" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
+            <button type="button" class="btn btn-danger" (click)="DeleteConfirm()">تأكيد الحذف</button>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,173 @@
+<div class="container main mt-4 ">
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message1!=''&& message1!=null">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    {{message1}}
+  </div>
+
+  <div>
+    <div class="col-md-5 ">
+      <h2>اضافه بيانات دكتور</h2>
+      <form [formGroup]="registaration" (ngSubmit)="RegistDoctor()">
+
+        <div class="form-group">
+          <label for="hospitalUserNameAR">اسم المستشفى</label>
+          <input type="text" id="hospitalUserNameAR" name="hospitalUserNameAR" formControlName="hospitalUserNameAR"
+            placeholder="اسم المستخدم" class="form-control" required [ngClass]="{
+          'is-invalid':
+            this.registaration.get('hospitalUserNameAR')?.invalid &&
+            this.registaration.get('hospitalUserNameAR')?.touched
+        }" />
+
+          <div class="text-danger" *ngIf="
+          this.registaration.get('hospitalUserNameAR')?.invalid &&
+          this.registaration.get('hospitalUserNameAR')?.touched
+        ">
+            اسم المستشفى مطلوب
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="hospitalEmail">البريد الالكتروني</label>
+          <input type="text" id="hospitalEmail" name="hospitalEmail" formControlName="hospitalEmail" required
+            class="form-control" [ngClass]="{
+          'is-invalid':
+            this.registaration.get('hospitalEmail')?.invalid &&
+            this.registaration.get('hospitalEmail')?.touched
+        }" />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('hospitalEmail')?.invalid &&
+          this.registaration.get('hospitalEmail')?.touched
+        ">
+            <div class="text-danger" *ngIf="
+            this.registaration.get('hospitalEmail')?.errors?.required  ">
+              ايميل المستشفى مطلوب
+            </div>
+            <div *ngIf="this.registaration.get('hospitalEmail')?.errors?.email">
+              الايميل مطلوب بشكل صحيح
+            </div>
+
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="hospitalPhone"> الجوال</label>
+          <input type="text" id="hospitalPhone" name="hospitalPhone" formControlName="hospitalPhone" [ngClass]="{
+          'is-invalid':
+            this.registaration.get('hospitalPhone')!.valid &&
+            this.registaration.get('hospitalPhone')?.touched
+        }" class="form-control" required minlength="9" />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('hospitalPhone')?.invalid &&
+          this.registaration.get('hospitalPhone')?.touched
+        ">
+            <div *ngIf="this.registaration.get('hospitalPhone')?.errors?.required">
+              رقم الجوال مطلوبه
+            </div>
+            <div *ngIf="this.registaration.get('hospitalPhone')?.errors?.minlength">
+              الحد الاقصى للجوال 9 مقاطع
+            </div>
+
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="hospitalLocation"> العنوان </label>
+
+          <input type="text" id="hospitalLocation" name="hospitalLocation" formControlName="hospitalLocation" [ngClass]="{
+          'is-invalid':
+            this.registaration.get('hospitalLocation')!.valid &&
+            this.registaration.get('hospitalLocation')?.touched
+        }" class="form-control" required />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('hospitalLocation')?.invalid &&
+          (this.registaration.get('hospitalLocation')?.touched || this.registaration.get('doctorNationality')?.dirty)
+        ">
+            <div *ngIf="this.registaration.get('hospitalLocation')?.errors?.required">
+              يرجى تحديد عنوان المستشفى
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="form-group">
+          <label for="hospitalType"> نوع المستشفى </label>
+          <input type="text" id="hospitalType" name="hospitalType" formControlName="hospitalType" [ngClass]="{
+          'is-invalid':
+            this.registaration.get('hospitalType')!.valid &&
+            this.registaration.get('hospitalType')?.touched
+        }" class="form-control" required />
+          <div class="text-danger" *ngIf="
+          this.registaration.get('hospitalType')?.invalid &&
+          (this.registaration.get('hospitalType')?.touched || this.registaration.get('hospitalType')?.dirty)
+        ">
+            <div *ngIf="this.registaration.get('hospitalType')?.errors?.required">
+              يرجى تحديد نوع المستشفى
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+          <label for="">صوره المستشفى</label>
+          <input type="file" class="form-control-file" name="hospitalImage" id="" formControlName="hospitalImage"
+            placeholder="hospitalImage" aria-describedby="fileHelpId">
+
+
+          <div class="text-danger" *ngIf="
+    this.registaration.get('hospitalImage')?.invalid &&
+    (this.registaration.get('hospitalImage')?.touched )
+  ">
+            <div *ngIf="this.registaration.get('hospitalImage')?.errors?.required">
+              يرجى تحديد الصوره
+            </div>
+
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="hospitalInformation"> معلومات عن المستشفى </label>
+          <input type="text" id="hospitalInformation" name="hospitalInformation" formControlName="hospitalInformation"
+            [ngClass]="{
+    'is-invalid':
+      this.registaration.get('hospitalInformation')!.valid &&
+      this.registaration.get('hospitalInformation')?.touched
+  }" class="form-control" required />
+          <div class="text-danger" *ngIf="
+    this.registaration.get('hospitalInformation')?.invalid &&
+    (this.registaration.get('hospitalInformation')?.touched || this.registaration.get('hospitalInformation')?.dirty)
+  ">
+            <div *ngIf="this.registaration.get('hospitalInformation')?.errors?.required">
+              يرجى ادخال معلومات المستشفى
+            </div>
+
+
+          </div>
+
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="registaration.invalid">
+            <span class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+          </button>
+          <a routerLink="../register" class="btn btn-link">Register</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="btn-login mt-3">
+      لدي جساب <a href="login">تسجيل الدخول</a>
+
+    </div>
+    <div>
+      <a href="passwordconfirm">sure</a>
+    </div>
+  </div>
+</div>

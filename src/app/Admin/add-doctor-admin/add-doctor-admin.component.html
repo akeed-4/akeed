@@ -1,0 +1,116 @@
+<div class="container py-5 ar mt-2 ">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <div class="bg-white rounded-lg shadow-lg p-5">
+        <div class="alert alert1 text-center alert-secondary1 alert-secondary mb-4 ">
+          <strong>{{title}}</strong>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="message">
+          <strong>{{message}}</strong>
+        </div>
+        <hr class="mb-6">
+        <button type="button" class="btn btn-primary mb-4" (click)="GoToList()">العودة لقائمة العملاء</button>
+        <div class="tab-content">
+          <div class="tab-pane fade show active">
+            <form [formGroup]="doctorForm" (ngSubmit)="AddDoctor()">
+              <div class="form-group">
+                <!-- <label style="font-weight: bold;" for="doctorName">اسم الطبيب </label> -->
+                <input type="text" formControlName="doctorUserName" class="form-control" id="doctorUserName"
+                  placeholder=" اسم العميل"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorUserName').invalid && this.doctorForm.get('doctorUserName').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('doctorUserName').invalid && this.doctorForm.get('doctorUserName').touched
+                              && this.doctorForm.get('doctorUserName').value===''">
+                  {{messageValidate.doctorUserName.required}}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <!-- <label for="doctorType" style="font-weight: bold;">العمر  :</label> -->
+                <input type="text " class="form-control" formControlName="doctorAge" id="doctorAge" placeholder="العمر "
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorAge').invalid && this.doctorForm.get('doctorAge').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('doctorAge').invalid && this.doctorForm.get('doctorAge').touched
+                            && this.doctorForm.get('doctorAge').value===''">
+                  {{messageValidate.doctorAge.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="doctorNationality" style="font-weight: bold;">العنوان :</label> -->
+                <input type="text " class="form-control" formControlName="doctorLocation" id="doctorLocation"
+                  placeholder="العنوان"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorLocation').invalid && this.doctorForm.get('doctorLocation').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('doctorLocation').invalid && this.doctorForm.get('doctorLocation').touched
+                           && this.doctorForm.get('doctorLocation').value===''">
+                  {{messageValidate.doctorLocation.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="doctorQualifa" style="font-weight: bold;"> البريد الالكتروني :</label> -->
+                <input type="email " class="form-control" formControlName="doctorEmail" id="doctorEmail"
+                  placeholder=" البريد الالكتروني"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorEmail').invalid && this.doctorForm.get('doctorEmail').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('doctorEmail').invalid && this.doctorForm.get('doctorEmail').touched
+                             && this.doctorForm.get('doctorEmail').value===''">
+                  {{messageValidate.doctorEmail.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="doctorTelephone" style="font-weight: bold;">الهاتف :</label> -->
+                <input type="text " class="form-control" formControlName="doctorPhone" id="doctorPhone"
+                  placeholder="رقم الهاتف"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorPhone').invalid && this.doctorForm.get('doctorPhone').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('doctorPhone').invalid && this.doctorForm.get('doctorPhone').touched
+                                  && this.doctorForm.get('doctorPhone').value===''">
+                  {{messageValidate.doctorPhone.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <!-- <label for="doctorTelephone" style="font-weight: bold;">الهاتف :</label> -->
+                <input type="datetime-local" class="form-control" formControlName="datejoining" id="datejoining"
+                  placeholder="تاريخ الانضمام"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('datejoining').invalid && this.doctorForm.get('datejoining').touched}">
+
+                <div class="text-danger" *ngIf="this.doctorForm.get('datejoining').invalid && this.doctorForm.get('datejoining').touched
+                                  && this.doctorForm.get('datejoining').value===''">
+                  {{messageValidate.datejoining.required}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img id="image" class="img-fluid rounded border bg-light" [src]="urlIamge">
+              </div>
+              <div class="form-group">
+                <label for="Image" style="font-weight: bold;">الصورة الشخصية :</label>
+                <div class="custom-file">
+                  <input type="file" formControlName="doctorImage" id="doctorImage" (change)="HandleFiles($event)"
+                    accept="Image/*" class="custom-file-input">
+                  <label class="custom-file-label upload-lbl" for="doctorImage">
+                    <span *ngIf="img !== null ">{{img.name}}</span>
+                    <span *ngIf="img === null ">اختر صورة</span>
+                  </label>
+                </div>
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorImage').valid && this.doctorForm.get('doctorImage').touched && img === null">
+                  {{messageValidate.doctorImage.required}}
+                </div>
+              </div>
+
+
+              <button type="submit" class="btn btn-primary" [disabled]="doctorForm.invalid || img === null">{{btnTitle}}
+              </button>
+
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

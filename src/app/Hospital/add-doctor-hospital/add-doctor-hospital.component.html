@@ -1,0 +1,128 @@
+<div class="container   py-5">
+  <div class=" row ">
+    <div class="col-lg-8 bg-white  shadow-sm mx-auto  align-items-center justify-content-center">
+      <div class="row  ">
+        <div class="col-lg-12 mx-auto d-flex align-items-center justify-content-center  ">
+          <div class="  ">
+            <div class="alert alert-info text-center  marginrightalert" role="alert">
+              <strong>إضافات أطباء المستشفي </strong>
+            </div>
+            <img src="assets/imges/doctoLogin.jpg" class="rounded imgeT">
+            <div class="text-cent-center mr-5">
+              <strong ></strong>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- اضافة تخصص جديد لمستشفي  وطبيب-->
+      <div class="row">
+        <div class=" col-md-12 mt-4">
+          <div class="row">
+            <div class="col-md-6 ">
+              <a (click)="addNewSpecialties()">
+                <span style="font-size: 2em; color:Mediumslateblue;">
+                  <i class="far fa-plus-square"></i>
+                </span>
+                <div style="margin-top:-2.3rem!important; margin-right: 1.9rem!important;">
+                  <strong class="mr-2">اضافة تخصص جديد لمستشفي</strong>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-2 "></div>
+
+            <div class="col-md-4 ">
+              <a (click)="addNewDoctor()">
+                <span style="font-size: 2em; color:Mediumslateblue;">
+                  <i class="far fa-plus-square"></i>
+                </span>
+                <div style="margin-top:-2.3rem!important; margin-right: 1.9rem!important;">
+                  <strong class="mr-2"> اضافة طبيب جديد </strong>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 mradd mx-auto  align-items-center justify-content-center">
+          <div class=" pb-3  ">
+
+            <div class="row   ">
+
+              <div class="col-md-12 p-3">
+
+                <form [formGroup]="doctorHosptialSpeciGrop" (ngSubmit)="addHospitalsDoctors()">
+
+                  <div class=" col-md-10 mt-4">
+                    <div class="form-group">
+                      <!--  -->
+                      <select class="form-control" id="dapertmentId" formControlName="dapertmentId"
+                        (change)="changeWebsiteDapertment($event)">
+                        <option value="0">اختر القسم</option>
+                        <option *ngFor="let arrD of arrDaperment" [ngValue]="arrD.id">
+                          {{arrD.dapertmentName}}
+
+                        </option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class=" col-md-10 mt-4">
+                    <div class="form-group">
+
+                      <select class="form-control" id="specialtiesId" formControlName="specialtiesId"
+                        (change)="changeWebsiteSpecialties($event)">
+                        <option value="0">اختر التخصص</option>
+                        <option *ngFor="let arrSpecialtie of arrSpecialties" [ngValue]="arrSpecialtie.id">
+                          {{arrSpecialtie.splicationName}}
+
+                        </option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class=" col-md-10 mt-4">
+                    <div class="form-group">
+
+                      <select class="form-control" id="doctorsId" formControlName="doctorsId">
+                        <option value="0">اختر الطبيب </option>
+                        <option *ngFor="let arrDoctor of arrDoctors" [ngValue]="arrDoctor.id">
+                          {{arrDoctor.doctorUserName}}
+
+                        </option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class=" col-md-10">
+
+                  </div>
+                  <div class=" col-md-10">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button type="submit" class=" subscribe btn btn-primary btn-block rounded-pill shadow-sm mt-2">
+                          حفظ </button>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+</div>

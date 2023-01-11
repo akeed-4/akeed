@@ -1,0 +1,484 @@
+<div class="alert alert-success alert-dismissible fade show" style="direction:rtl" role="alert"
+  *ngIf="message != null && message != ''">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="container register" style="direction: rtl">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="/src/assets/imgs/mascotte.png" alt="" />
+      <h3 id="color"> مرحبا بك في طبيبي نت !</h3>
+      <p>انضم الينا لتختصر المسافات وتحجز عن بعد لأي مرض لدى أي طبيب وفي أي مستشفى او عيادة خاصة ,,,</p>
+      <input type="submit" name="" value="الانضمام الينأ   " />
+      <br />
+      
+    </div>
+    <div class="col-md-9 register-right">
+      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home1"
+            (click)="showUser()" aria-selected="false">مستخدم</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  " id="profile-tab" data-toggle="tab" (click)="showdoc()" role="tab"
+            aria-controls="profile" aria-selected="false">عميل </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link   " id="addhos-tab" data-toggle="tab" (click)="showhospi()" role="tab"
+            aria-controls="addhos" aria-selected="false">مدير صفحه</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <form [formGroup]="userForm" (ngSubmit)="register()">
+          <div class="tab-pane fade show  active   " *ngIf="this.showReUser" id="home1" role="tabpanel"
+            aria-labelledby="home-tab">
+            <br>
+            <h3 class="register-heading head ">التسجيل كـ مستخدم </h3>
+            <div class="row register-form">
+              <div class="col-md-6">
+                <div class="form-group inputt">
+                  <input type="text" class="form-control" formControlName="userName" placeholder="اسم المستخدم "
+                    value="" [ngClass]="{
+                                              'is-invalid':
+                                                this.userForm.get('userName')?.invalid &&
+                                                this.userForm.get('userName')?.touched
+                                            }" />
+                  <div class="text-danger" *ngIf="
+                                              this.userForm.get('userName')?.invalid &&
+                                              this.userForm.get('userName')?.touched
+                                            ">
+                    اسم المستخدم مطلوب
+                  </div>
+
+                </div>
+                <div class="form-group inputt">
+                  <input type="text" class="form-control" formControlName="userNameArabic"
+                    placeholder=" اسم المستخدم بالعربي " value="" [ngClass]="{
+                                              'is-invalid':
+                                                this.userForm.get('userNameArabic')?.invalid &&
+                                                this.userForm.get('userNameArabic')?.touched
+                                            }" />
+                  <div class="text-danger" *ngIf="
+                                              this.userForm.get('userNameArabic')?.invalid &&
+                                              this.userForm.get('userNameArabic')?.touched
+                                            ">
+                    اسم المستخدم مطلوب
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <input type="password" class="form-control" required minlength="6" formControlName="password"
+                    placeholder="كلمة المرور " value="" [ngClass]="{
+                                              'is-invalid':
+                                                this.userForm.get('password')?.invalid &&
+                                                this.userForm.get('password')?.touched
+                                            }" />
+                  <div class="text-danger" *ngIf="
+                                              this.userForm.get('password')?.invalid &&
+                                              this.userForm.get('password')?.touched
+                                            ">
+                    <div *ngIf="this.userForm.get('password')?.errors?.required">
+                      كلمه المرور مطلوبه
+                    </div>
+                    <div *ngIf="this.userForm.get('password')?.errors?.minlength">
+                      الحد الاقصى لكلمه المرور 6 مقاطع
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" required minlength="6" formControlName="passwordConfirm"
+                    placeholder="تأكيد كلمة المرور  " value="" [ngClass]="{
+                                              'is-invalid':
+                                                this.userForm.get('passwordConfirm')?.invalid &&
+                                                this.userForm.get('passwordConfirm')?.touched
+                                            }" />
+                  <div class="text-danger" *ngIf="
+                                              this.userForm.get('passwordConfirm')?.invalid &&
+                                              this.userForm.get('passwordConfirm')?.touched
+                                            ">
+                    <div class="text-danger" *ngIf="
+                                                this.userForm.get('passwordConfirm')?.errors?.required  ">
+                      تاكيد كلمه المرور مطلوب
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div class="col-md-6">
+
+
+                <div class="form-group">
+                  <input type="email" class="form-control" required [ngClass]="{
+                                              'is-invalid':
+                                                this.userForm.get('email')?.invalid &&
+                                                this.userForm.get('email')?.touched
+                                            }" formControlName="email" placeholder="البريد الالكتروني" value="" />
+                  <div class="text-danger" *ngIf="
+                                              this.userForm.get('email')?.invalid &&
+                                              this.userForm.get('email')?.touched
+                                            ">
+                    <div class="text-danger" *ngIf="
+                                                this.userForm.get('email')?.errors?.required  ">
+                      ايميل المستخدم مطلوب
+                    </div>
+                    <div class="text-danger" *ngIf="this.userForm.get('email')?.errors?.email">
+                      ادخل الايميل بشكل صحيح
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="phoneNumber" [ngClass]="{
+                                                'is-invalid':
+                                                  this.userForm.get('phoneNumber')?.invalid &&
+                                                  this.userForm.get('phoneNumber')?.touched
+                                              }" placeholder="رقم الهاتق" />
+                  <div class="text-danger" *ngIf="
+                                                this.userForm.get('phoneNumber')?.invalid &&
+                                                this.userForm.get('phoneNumber')?.touched
+                                              ">
+                    رقم المستخدم مطلوب
+                  </div>
+                </div>
+
+                <input type="submit" class="btnRegister  btn" [disabled]="userForm.invalid" value="تسجيل" />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- تسجيل طبيب -->
+        <form [formGroup]="userForm1" (ngSubmit)="registerDoctor()">
+          <div class="tab-pane fade show  active " *ngIf="this.showReDoctor" id="profile" role="tabpanel"
+            aria-labelledby="profile-tab">
+            <br>
+            <h3 class="register-heading head">التسجيل كـ طبيب</h3>
+            <div class="row register-form">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="doctorUserName" [ngClass]="{
+                                                'is-invalid':
+                                                  this.userForm1.get('doctorUserName')?.invalid &&
+                                                  this.userForm1.get('doctorUserName')?.touched
+                                              }" placeholder="   الاسم بالانجليزي " />
+                  <div class="text-danger" *ngIf="
+                                                this.userForm1.get('doctorUserName')?.invalid &&
+                                                this.userForm1.get('doctorUserName')?.touched
+                                              ">
+                    اسم الطبيب مطلوب
+                  </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="doctorNameAraic" [ngClass]="{
+        'is-invalid':
+          this.userForm1.get('doctorNameAraic')?.invalid &&
+          this.userForm1.get('doctorNameAraic')?.touched
+      }" placeholder=" اسم الطبيب بالعربي   " />
+                  <div class="text-danger" *ngIf="
+        this.userForm1.get('doctorNameAraic')?.invalid &&
+        this.userForm1.get('doctorNameAraic')?.touched
+      ">
+                    اسم الطبيب مطلوب
+                  </div>
+                </div>
+
+
+
+
+
+
+                <div class="form-group">
+                  <input type="email" class="form-control" formControlName="doctorEmail" [ngClass]="{
+                                            'is-invalid':
+                                              this.userForm1.get('doctorEmail')?.invalid &&
+                                              this.userForm1.get('doctorEmail')?.touched
+                                          }" placeholder="البريد الالكتروني" />
+                  <div class="text-danger" *ngIf="
+                                            this.userForm1.get('doctorEmail')?.invalid &&
+                                            this.userForm1.get('doctorEmail')?.touched
+                                          ">
+                    <div class="text-danger" *ngIf="
+                                              this.userForm1.get('doctorEmail')?.errors?.required  ">
+                      ايميل المستحدم مطلوب
+                    </div>
+                    <div class="text-danger" *ngIf="this.userForm1.get('doctorEmail')?.errors?.email">
+                      ادخل الايميل بشكل صحيح
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="doctorLocation" [ngClass]="{
+                                            'is-invalid':
+                                              this.userForm1.get('doctorLocation')?.invalid &&
+                                              this.userForm1.get('doctorLocation')?.touched
+                                          }" placeholder="  العنوان  " />
+                  <div class="text-danger" *ngIf="
+                                            this.userForm1.get('doctorLocation')?.invalid &&
+                                            this.userForm1.get('doctorLocation')?.touched
+                                          ">
+                    <div *ngIf="this.userForm1.get('doctorLocation')?.errors?.required">
+                      عنوان الطبيب مطلوب
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="doctorPhone" [ngClass]="{
+                                            'is-invalid':
+                                              this.userForm1.get('doctorPhone')?.invalid &&
+                                              this.userForm1.get('doctorPhone')?.touched
+                                          }" placeholder="رقم الهاتق" />
+                  <div class="text-danger" *ngIf="
+                                            this.userForm1.get('doctorPhone')?.invalid &&
+                                            this.userForm1.get('doctorPhone')?.touched
+                                          ">
+                    رقم الطبيب مطلوب
+                  </div>
+                </div>
+                <div class="form-group">
+
+                  <select class="form-control" id="specialtiesId" formControlName="specialtiesId"
+                    (change)="changeSpecialtie($event)">
+                    <option value="0">اختر التخصص</option>
+                    <option *ngFor="let allSplications of allSplication" [ngValue]="allSplications.id">
+                      {{allSplications.splicationName}}
+                    </option>
+
+                  </select>
+                </div>
+
+                <!-- كلمة المرور -->
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="password" [ngClass]="{
+                                                  'is-invalid':
+                                                    this.userForm1.get('password')?.invalid &&
+                                                    this.userForm1.get('password')?.touched
+                                                }" placeholder="كلمة المرور " />
+                  <div class="text-danger" *ngIf="
+                                                  this.userForm1.get('password')?.invalid &&
+                                                  this.userForm1.get('password')?.touched
+                                                ">
+                    <div *ngIf="this.userForm1.get('password')?.errors?.required">
+                      كلمه المرور مطلوبه
+                    </div>
+                    <div *ngIf="this.userForm1.get('password')?.errors?.minlength">
+                      الحد الاقصى لكلمه المرور 6 مقاطع
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="passwordConfirm" [ngClass]="{
+                                                  'is-invalid':
+                                                    this.userForm1.get('passwordConfirm')?.invalid &&
+                                                    this.userForm1.get('passwordConfirm')?.touched
+                                                }" placeholder="تأكيد كلمة المرور  " />
+                  <div class="text-danger" *ngIf="
+                                                  this.userForm1.get('passwordConfirm')?.invalid &&
+                                                  this.userForm1.get('passwordConfirm')?.touched
+                                                ">
+                    <div *ngIf="this.userForm1.get('passwordConfirm')?.errors?.required">
+                      كلمه المرور مطلوبه
+                    </div>
+                    <div *ngIf="this.userForm1.get('passwordConfirm')?.errors?.minlength">
+                      الحد الاقصى لكلمه المرور 6 مقاطع
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+
+
+
+
+              <div class="col-md-6">
+
+                <input type="submit" class="btnRegister btn" [disabled]="userForm1.invalid" value="تسجيل" />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <form [formGroup]="userFormHosptal" (ngSubmit)="registerHosptal()">
+          <div class="tab-pane fade show  active " id="addhos" role="tabpanel" *ngIf="this.showHos"
+            aria-labelledby="addhos-tab">
+            <br>
+            <h3 class="register-heading head">التسجيل كـ مستشفى</h3>
+            <div class="row register-form">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="hospitalUserNameAR" [ngClass]="{
+                                                    'is-invalid':
+                                                      this.userFormHosptal.get('hospitalUserNameAR')?.invalid &&
+                                                      this.userFormHosptal.get('hospitalUserNameAR')?.touched
+                                                  }" placeholder="الاسم بالانجليزي" value="" />
+                  <div class="text-danger" *ngIf="
+                                                    this.userFormHosptal.get('hospitalUserNameAR')?.invalid &&
+                                                    this.userFormHosptal.get('hospitalUserNameAR')?.touched
+                                                  ">
+                    اسم المستحدم مطلوب
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="hospitalName" [ngClass]="{
+                                                    'is-invalid':
+                                                      this.userFormHosptal.get('hospitalName')?.invalid &&
+                                                      this.userFormHosptal.get('hospitalName')?.touched
+                                                  }" placeholder="بالعربي  (المستشفى)" value="" />
+                  <div class="text-danger" *ngIf="
+                                                    this.userFormHosptal.get('hospitalName')?.invalid &&
+                                                    this.userFormHosptal.get('hospitalName')?.touched
+                                                  ">
+                    اسم المستشفى مطلوب
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <input type="email" class="form-control" formControlName="hospitalEmail"
+                    placeholder="البريد الالكتروني للمستشفى " value="" [ngClass]="{
+                                                'is-invalid':
+                                                  this.userFormHosptal.get('hospitalEmail')?.invalid &&
+                                                  this.userFormHosptal.get('hospitalEmail')?.touched
+                                              }" />
+                  <div class="text-danger" *ngIf="
+                                                this.userFormHosptal.get('hospitalEmail')?.invalid &&
+                                                this.userFormHosptal.get('hospitalEmail')?.touched
+                                              ">
+                    <div class="text-danger" *ngIf="
+                                                  this.userFormHosptal.get('hospitalEmail')?.errors?.required  ">
+                      ايميل المستحدم مطلوب
+                    </div>
+                    <div class="text-danger" *ngIf="this.userFormHosptal.get('hospitalEmail')?.errors?.email">
+                      ادخل الايميل بشكل صحيح
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="password" [ngClass]="{
+                                            'is-invalid':
+                                              this.userFormHosptal.get('password')?.invalid &&
+                                              this.userFormHosptal.get('password')?.touched
+                                          }" placeholder="كلمة المرور " value="" />
+                  <div class="text-danger" *ngIf="
+                                            this.userFormHosptal.get('password')?.invalid &&
+                                            this.userFormHosptal.get('password')?.touched
+                                          ">
+                    <div *ngIf="this.userFormHosptal.get('password')?.errors?.required">
+                      كلمه المرور مطلوبه
+                    </div>
+                    <div *ngIf="this.userFormHosptal.get('password')?.errors?.minlength">
+                      الحد الاقصى لكلمه المرور 6 مقاطع
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" formControlName="passwordConfirm" [ngClass]="{
+                                            'is-invalid':
+                                              this.userFormHosptal.get('passwordConfirm')?.invalid &&
+                                              this.userFormHosptal.get('passwordConfirm')?.touched
+                                          }" placeholder="تأكيد كلمة المرور  " value="" />
+
+                  <div class="text-danger" *ngIf="
+                                            this.userFormHosptal.get('passwordConfirm')?.invalid &&
+                                            this.userFormHosptal.get('passwordConfirm')?.touched
+                                          ">
+                    <div *ngIf="this.userFormHosptal.get('passwordConfirm')?.errors?.required">
+                      كلمه المرور مطلوبه
+                    </div>
+                    <div *ngIf="this.userFormHosptal.get('passwordConfirm')?.errors?.minlength">
+                      الحد الاقصى لكلمه المرور 6 مقاطع
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+              </div>
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="hospitalPhone" [ngClass]="{
+                                                    'is-invalid':
+                                                      this.userFormHosptal.get('hospitalPhone')?.invalid &&
+                                                      this.userFormHosptal.get('hospitalPhone')?.touched
+                                                  }" placeholder="رقم الهاتق" />
+                  <div class="text-danger" *ngIf="
+                                                    this.userFormHosptal.get('hospitalPhone')?.invalid &&
+                                                    this.userFormHosptal.get('hospitalPhone')?.touched
+                                                  ">
+                    رقم المستشفى مطلوب
+                  </div>
+                </div>
+                <div class="form-group">
+
+                  <select class="form-control" id="hospitalType" formControlName="hospitalType">
+                    <option [ngValue]="0" selected>اختر نوع المستشفي </option>
+                    <option [ngValue]="1"> مستشفى عام </option>
+                    <option [ngValue]="2"> مستشفى خاص </option>
+                    <option [ngValue]="3"> عيادة </option>
+
+
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" formControlName="hospitalLocation" [ngClass]="{
+                                                    'is-invalid':
+                                                      this.userFormHosptal.get('hospitalLocation')?.invalid &&
+                                                      this.userFormHosptal.get('hospitalLocation')?.touched
+                                                  }" placeholder=" عنوان المستشفى (مدينه - مديريه - شارع - مبنى) "
+                    value="" />
+                  <div class="text-danger" *ngIf="
+                                                    this.userFormHosptal.get('hospitalLocation')?.invalid &&
+                                                    this.userFormHosptal.get('hospitalLocation')?.touched
+                                                  ">
+                    <div *ngIf="this.userFormHosptal.get('hospitalLocation')?.errors?.required">
+                      يرجى تحديد عنوان المستشفى
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <input type="submit" class="btnRegister btn" [disabled]="userFormHosptal.invalid" value="تسجيل" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="m-6 text-center"> لدي حساب
+        <a href="Logins" class=""> تسجيل الدخول</a>
+      </div>
+      <!-- <input type="submit" name="" value="الانضمام الينأ   " /> -->
+    </div>
+    <!-- <div  class="register-right">
+      <input type="submit" name="" value="الانضمام الينأ   " />
+
+    </div> -->
+  </div>
+
+</div>

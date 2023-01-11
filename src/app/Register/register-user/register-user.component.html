@@ -1,0 +1,184 @@
+<div class="container py-5 ar mt-2 ">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white rounded-lg shadow-lg p-5">
+
+        <div class="row">
+          <div class="col-md-6  mt-0">
+            <img src="assets/imges/logo.jpg" class="rounded ">
+            <div class="alert pr-1" role="alert">
+              <h4 class="alert-heading"> تسجيل مستخدم جديد</h4>
+              <p></p>
+              <p class="mb-0"></p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+          <!--input User Name-->
+          <div class="alert alert-success alert-dismissible fade show" role="alert"
+            *ngIf="this.message!=null&&this.message!=''">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{this.message}}</strong>
+          </div>
+          <!-- الاسم -->
+          <div class=" row">
+
+            <div class="col-md-8">
+              <div class="form-group">
+                <!-- <label for="UserName">اسم المستخدم انجليزي</label> -->
+                <input type="text " class="form-control" name="userName" [(ngModel)]="model.userName" #Name="ngModel"
+                  [ngClass]="{'is-invalid':Name.invalid&&Name.touched}" required placeholder=" اسم المستخدم انجليزي  ">
+                <div class="text-danger" *ngIf="Name.invalid&&Name.touched">
+                  <!-- <p *ngIf="Name.errors.required"> {{this.messagerVaiatider.userName.required}}</p> -->
+                </div>
+                <div class="text-danger" *ngIf="Name.touched">
+                  <div class="text-danger" *ngIf="this.isNameExit()">
+                    {{this.messagerVaiatider.userName.match}}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!-- نوع المستخدم -->
+          <div class="row py-2">
+            <div class="col-md-12">
+              <div class="form-group">
+                <!-- <label for="UserName"> اختر التخصص </label> -->
+                <!-- <input type="text " class="form-control" name="phone"  placeholder=" اختر التخصص "> -->
+                <select class="form-control" id="" name="" aria-placeholder=" المستخدمالمستخدم">
+                  <option selected aria-placeholder="">نوع المستخدم</option>
+                  <option value="1">مستخدم</option>
+                  <option value="2">طيبب</option>
+                  <option value="3">مستشفى</option>
+                  <option value="4">عيادة</option>
+                </select>
+              </div>
+
+            </div>
+
+
+
+          </div>
+          <!-- رقم الموبيل -->
+          <div class="row py-2">
+            <div class="col-md-12">
+              <div class="form-group">
+                <!-- <label for="UserName">رقم الموبيل </label> -->
+                <input type="text " class="form-control" name="phone" placeholder=" رقم الموبيل ">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="UserName">اسم المستخدم</label>
+            <input type="text " class="form-control" name="userName" [(ngModel)]="model.userName" #Name="ngModel"
+              [ngClass]="{'is-invalid':Name.invalid&&Name.touched}" required>
+            <div class="text-danger" *ngIf="Name.invalid&&Name.touched">
+              <p *ngIf="Name.errors.required"> {{this.messagerVaiatider.userName.required}}</p>
+            </div>
+            <div class="text-danger" *ngIf="Name.touched">
+              <div class="text-danger" *ngIf="this.isNameExit()">
+                {{this.messagerVaiatider.userName.match}}
+              </div>
+            </div>
+          </div> -->
+
+          <div class="row py-2">
+            <div class="col-md-12 col-xs-4">
+              <!--input Email-->
+
+              <div class="form-group">
+                <!-- <label for="Email">البريد الالكتروني</label> -->
+                <input type="email" name="email" class="form-control " email [(ngModel)]="model.email" #Email="ngModel"
+                  required [ngClass]="{'is-invalid':Email.invalid&&Email.touched}" placeholder=" البريد الالكتروني  ">
+                <div class="text-danger" *ngIf="Email.invalid&&Email.touched">
+                  <!-- <p *ngIf="Email.errors.required">
+                       {{this.messagerVaiatider.email.required}}
+                      </p>
+                      <p *ngIf="Email.errors.email">
+                        {{this.messagerVaiatider.email.notValid}}
+                       </p> -->
+                </div>
+                <div *ngIf="Email.touched">
+                  <div class="text-danger" *ngIf="isEmailExit()">
+                    {{this.messagerVaiatider.email.match}}
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- كلمة المرو -->
+          <div class="row py-2">
+            <div class="col-md-6">
+              <!--input Password-->
+              <div class="form-group">
+
+                <!-- <label for="Password">كلمة المرو </label> -->
+                <input type="password" name="password" class="form-control " [(ngModel)]="model.password"
+                  #Possword="ngModel" required minlength="6"
+                  [ngClass]="{'is-invalid':Possword.invalid&&Possword.touched}" placeholder=" كلمة المرور  ">
+                <div class="text-danger" *ngIf="Possword.invalid && (Possword.touched||Possword.dirty)">
+                  <!-- <p *ngIf="Possword.errors.required">
+                        {{this.messagerVaiatider.poss.required}}
+                      </p>
+                      <p *ngIf="Possword.errors.minlength">
+                        {{this.messagerVaiatider.poss.minlength}}
+                      </p> -->
+                </div>
+              </div>
+            </div>
+            <!--input PosswordCOnfim-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <!-- <label for="PosswordConfim"> تاكيد كلمة المرو </label> -->
+                <input type="password" name="posswordConfim" class="form-control " [(ngModel)]="model2.posswordConfim"
+                  #PosswordConfim="ngModel" required minlength="6"
+                  [ngClass]="{'is-invalid':PosswordConfim.invalid&&PosswordConfim.touched}"
+                  placeholder=" تاكيد كلمة المرور  ">
+                <div class="text-danger"
+                  *ngIf="(PosswordConfim.invalid&&(PosswordConfim.touched||PosswordConfim.dirty))">
+                  <!-- <p *ngIf="PosswordConfim.errors.required">
+                          كلمة المرو مطلوبه
+                        </p> -->
+                </div>
+                <div class="text-danger" *ngIf="isPasswordConfim()">
+                  كلمة المرو غير مطابقة
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div class="form-group">
+            <input type="checkbox" class="pr-5" name="remmber">
+            <label class="form-check-label" class="pr-2"> أوافق علي <a href="#"> شروط الخصوصيه وسياسية الاستخدام </a>
+            </label>
+          </div>
+          <button type="submit" class="  subscribe btn btn-primary btn-block rounded-pill shadow-sm mt-2"
+            [disabled]="userForm.invalid ||isPasswordConfim()||isNameExit()||isEmailExit()"> تسجيل</button>
+          <div class="mt-3   mb-4 subscribe  text-center"> لديك حساب على طببي نت ؟<a href="Login" class="pr-2"> تسجيل
+              دخول </a></div>
+
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="">
+
+
+  <div>
+      <table id="tbl" class="table table-response big-ligth  back">
+          <thead>
+              <tr class="bg-dark text-light">
+                  <th>اسم المستخدم</th>
+                  <th>البريد الالكتروني</th>
+                  <th scope="col">رقم الهاتف</th>
+                  <th>تعديل</th>
+                  <th>
+                      <input type="checkbox" class="ckheader" (change)="selectAll()" [checked]="selectAll">
+                  </th>
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of users">
+                  <td scope="row">{{item.userName}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.phoneNumber}}</td>
+
+
+                 <td>
+                       <div>
+                      <button type="button" class="btn btn-danger btn-sm " (click)="iditUser(item.id)">تعديل</button>
+                  </div></td>
+                  <td>
+                          <input type="checkbox" class="ckitem" value="{{item.id }}">
+                  </td>
+              </tr>
+
+          </tbody>
+      </table>
+  </div>
+  <div>
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId"  [disabled]="!isDelet()" (click)="Deletcount()">
+                  حذف
+                </button>
+
+
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">تنبيه حذف </h5>
+
+          </div>
+          <div class="modal-body">
+              لقد قمت باختيار عدد {{num}}   عنصر للحذف   هل تريد الحذف
+          </div>
+          <div class="modal-footer">
+              <button id="btnclose" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
+              <button type="button" class="btn btn-danger" (click)="Deletconfirm()">تاكيد الحذف</button>
+          </div>
+      </div>
+  </div>
+</div>

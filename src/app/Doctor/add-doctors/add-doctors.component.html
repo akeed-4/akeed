@@ -1,0 +1,110 @@
+<div class="container py-5 ar mt-2 ">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <div class="bg-white rounded-lg shadow-lg p-5">
+        <div class="alert alert-success alert-dismissible fade show" role="alert"
+          *ngIf="message != null && message !=''">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          {{message}}
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane fade show active">
+            <div class="alert alert1 text-center alert-secondary1 alert-secondary mb-4 ">
+              <strong>{{title}}</strong>
+            </div>
+
+            <form [formGroup]="doctorForm" (ngSubmit)="AddDoctor()">
+              <div class="form-group">
+                <label for="doctorUserName" style="font-weight: bold;">اسم الطبيب :</label>
+                <input type="text " class="form-control" formControlName="doctorUserName" id="doctorUserName"
+                  placeholder="اسم الطبيب"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorUserName')?.invalid && this.doctorForm.get('doctorUserName')?.touched}">
+
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorUserName')?.valid && this.doctorForm.get('doctorUserName')?.touched">
+                  {{messageValidate.doctorUserName.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doctorAge" style="font-weight: bold;">العمر :</label>
+                <input type="text " class="form-control" formControlName="doctorAge" id="doctorAge" placeholder="العمر "
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorAge')?.invalid && this.doctorForm.get('doctorAge')?.touched}">
+
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorAge')?.valid && this.doctorForm.get('doctorAge')?.touched">
+                  {{messageValidate.doctorAge.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doctorLocation" style="font-weight: bold;">العنوان :</label>
+                <input type="text " class="form-control" formControlName="doctorLocation" id="doctorLocation"
+                  placeholder="العنوان"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorLocation')?.invalid && this.doctorForm.get('doctorLocation')?.touched}">
+
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorLocation')?.valid && this.doctorForm.get('doctorLocation')?.touched">
+                  {{messageValidate.doctorLocation.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doctorEmail" style="font-weight: bold;">البريد الالكتروني :</label>
+                <input type="email " class="form-control" formControlName="doctorEmail" id="doctorEmail"
+                  placeholder="البريد الالكتروني"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorEmail')?.invalid && this.doctorForm.get('doctorEmail')?.touched}">
+
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorEmail')?.valid && this.doctorForm.get('doctorEmail')?.touched">
+                  {{messageValidate.doctorEmail.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doctorPhone" style="font-weight: bold;">الهاتف :</label>
+                <input type="text " class="form-control" formControlName="doctorPhone" id="doctorPhone"
+                  placeholder="رقم الهاتف"
+                  [ngClass]="{'is-invalid': this.doctorForm.get('doctorPhone')?.invalid && this.doctorForm.get('doctorPhone')?.touched}">
+
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorPhone')?.valid && this.doctorForm.get('doctorPhone')?.touched">
+                  {{messageValidate.doctorPhone.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Image" style="font-weight: bold;">الصورة الشخصية :</label>
+                <div class="custom-file">
+                  <input type="file" formControlName="doctorImage" id="doctorImage" accept="Image/*"
+                    class="custom-file-input">
+                  <label class="custom-file-label upload-lbl" for="doctorImage">
+                    <span *ngIf="img != null ">{{img.name}}</span>
+                    <span *ngIf="img === null ">اختر صورة</span>
+                  </label>
+                </div>
+                <div class="text-danger"
+                  *ngIf="!this.doctorForm.get('doctorImage')?.valid && this.doctorForm.get('doctorImage')?.touched && img === null">
+                  {{messageValidate.doctorImage.required}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Alwsf" style="font-weight: bold;">معلومات عن الطبيب :</label>
+                <textarea class="form-control" formControlName="doctorInformation" cols="10" rows="5"></textarea>
+              </div>
+
+
+              <button type="submit" class="btn btn-primary" [disabled]="doctorForm.invalid">{{btnTitle}} </button>
+
+
+
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

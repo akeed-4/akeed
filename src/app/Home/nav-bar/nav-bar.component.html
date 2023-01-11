@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark  dr">
+  <a class="navbar-brand" href="#">البسيط ويب </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav " >
+      <a  class="nav-link" routerLink="DashbordFinal"    >
+         <i  class="fa fa-user-shield"></i>لوحة التحكم
+          </a>
+          <a  class="nav-link" routerLink="showdata"   *ngIf="IsDoctor() ||IsHospital()" >
+              <i  class="fa fa-user-shield"></i> الاطباء
+               </a>
+               
+
+
+               <a  class="nav-link" routerLink="dashbordHospital"   *ngIf="IsHospital()" >
+                  <i  class="fa fa-user-shield"></i> المستشفيات
+                   </a>
+                   <a  class="nav-link" routerLink="show-doctor"   *ngIf="IsUsers()" >
+                    <i  class="fa fa-user-shield"></i> المستخدمين
+                     </a>
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="ViewBookingHospital"  *ngIf="IsHospital()" >قائمه الحجوزات  <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink=" showHospital" *ngIf="IsDoctor()||IsAdmin()">دردشه</a>
+      </li>
+      <li class="nav-item"  >
+
+        <a class="nav-link" routerLink="Splication" >تواصل معنا</a>
+      </li>
+      <li class="nav-item"  >
+
+        <a class="nav-link"  > حول الموقع</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="hospitals"  *ngIf="IsUsers()"> حجز </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="ViewBookinPatient" *ngIf="IsUsers()">حجوزاتي   </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-circle"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+         <div class="" *ngIf="!isUserRegistered()">
+          <a class="dropdown-item" routerLink="CreatAccountTabbi">تسجيل</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="Logins">الدخول
+
+          </a>
+
+
+
+         </div>
+         <div class=""*ngIf="isUserRegistered()">
+
+
+          <a class="dropdown-item" (click)="Logout()">الخروج</a>
+
+         </div>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+
+
+</div>
+</nav>

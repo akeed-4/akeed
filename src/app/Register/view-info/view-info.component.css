@@ -1,0 +1,172 @@
+/*W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 CSS3,
+  Bootstrap which are 100% Mobile friendly. w3Hubs all Layouts are responsive cross browser
+  supported, best quality world class designs.*/
+  /* body {
+    background: #154360;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+} */
+
+h1 {
+    text-align: center;
+    padding-top: 30px;
+    margin: 0;
+    /* color: #fff; */
+}
+
+.card {
+    width: 50%;
+    border: 0px;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h4 {
+    padding-top: 30px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-title {
+  margin-bottom: -1.25rem;
+}
+
+.card1 {
+  width: 99%;
+margin-right:6px;
+}
+.bg-custom {
+    /* background: #2ea1b3d6; */
+    border: #28B463 2px solid;
+    /* box-shadow: 1px 7px 8px 4px rgba(0, 0, 0, .5); */
+}
+
+img {
+    height: 120px;
+    margin: 10px;
+}
+
+.rounded {
+    border-radius: 50% !important;
+}
+
+.icons .fa {
+    color: #fff;
+    padding-right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.mrightname{
+  margin-right: -5.33rem!important;
+}
+.mright{
+  margin-right: 17.7rem!important;
+}
+.icons .fa:hover {
+    color: #ddd;
+}
+.mrr{
+  margin-left: 1px;
+
+}
+/* .btn {
+  border-radius: 23px !important;
+    margin-top: 10px;
+} */
+
+.btn:nth-child(2) {
+    margin-right: 5px;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.btn-custom {
+    background: #4A235A;
+    border-color: #512E5F;
+    color: rgb(22, 21, 21);
+}
+
+.btn-border {
+    border-color: #28B463;
+    color: #28B463;
+}
+
+.btn-custom:hover {
+    color: rgb(24, 21, 21);
+    background: #512E5F;
+}
+
+.btn-border:hover {
+    border-color: #1D8348;
+    color: #28B463;
+}
+
+p {
+    text-transform: capitalize;
+    font-size: 18px;
+    padding-top: 20px;
+}
+/* نافذ الملعومات */
+.rounded-lg {
+  border-radius: 3.3rem!important;
+}
+
+.shadow-lg {
+  box-shadow: inset 0px 0rem 0rem 0px #010002 !important;
+}
+.nav-fill .nav-item, .nav-fill>.nav-link {
+
+  text-align: right;
+}
+.pilll{
+  /* height:400px; */
+  min-height: 700px;
+}
+@media(max-width: 992px) {
+    .card {
+        width: 60%;
+    }
+    h4 {
+        text-align: center;
+        padding-top: 15px;
+    }
+    img {
+        display: block;
+        margin: 10px auto;
+    }
+    .btn {
+        display: block !important;
+    }
+    .icons {
+        padding-top: 20px !important;
+    }
+}
+
+@media(max-width: 768px) {
+    .card {
+        width: 70%;
+    }
+}
+
+@media(max-width: 490px) {
+/* h4{
+  margin-bottom: 0.75rem;
+
+} */
+  p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+    .card {
+        width: 70%;
+    }
+}

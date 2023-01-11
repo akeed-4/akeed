@@ -1,0 +1,43 @@
+<div class="container py-5 ar mt-2 ">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="bg-white rounded-lg shadow-lg p-5">
+                <div class="alert alert1 text-center alert-secondary1 alert-secondary mb-4 ">
+                    <strong>{{title}}</strong>
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="message">
+                    <strong>{{message}}</strong>
+                </div>
+                <hr class="mb-6">
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active">
+                        <form [formGroup]="customerForm" (ngSubmit)="Addcustmer()">
+                            <div style="float: left; width: 80px;">
+                                <input type="checkbox" style="margin-left:20px ;"   (click)="checkDetials()" id="CSE" name="Branch" value="CSE"
+                                    checked="true">شبكه
+
+                            </div>
+
+                            <div>
+
+                                <input type="checkbox" style="margin-left:20px ;" name="Branch" value="IT" (click)="checkDetials()">
+
+                                <label for="">نقدي</label>
+                            </div>
+
+                           
+
+
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
